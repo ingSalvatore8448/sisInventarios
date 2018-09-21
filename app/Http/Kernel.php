@@ -56,5 +56,14 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \Inventario\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+
+
+        /*
+       Son para los roles
+       |
+       v      '
+*/
+           'is_admn'=> \Inventario\Http\Middleware\AdminMiddleware::class,
+            'is_resonsable'=> \Inventario\Http\Middleware\ResponsableMiddleware::class,
     ];
 }

@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password','Persona_idPersona' ,'created_at',
+        'email', 'password','Persona_idPersona' ,'created_at','idRol',
         'updated_at',
     ];
 
@@ -29,5 +29,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
 
+
+    public function rol()
+    {
+        return $this->hasMany(Inventario/Rol,'idRol','id');
+    }
 }

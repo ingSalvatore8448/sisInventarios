@@ -37,6 +37,9 @@ class UserRequest extends FormRequest
              'correo'=>'required | max:50 ',
 
 
+            ''
+
+
               ];
     }
 }

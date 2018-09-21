@@ -165,7 +165,7 @@ $('#ADCate').click(function () {
 
             e.preventDefault();
             var frm=$('#frmCateAdd');
-            var route='http://localhost:8000/Categorias'
+            var route='http://127.0.0.1:8000/Categorias'
             $.ajax({
                 url:route,
                 type:'POST',
@@ -225,7 +225,7 @@ $('#ADCate').click(function () {
 
          $('#btnUpdate').on('click',function(e) {
              e.preventDefault();
-             var url="http://localhost:8000/Categorias/"+$('#cate_id').val();
+             var url="http://127.0.0.1:8000/Categorias/"+$('#cate_id').val();
              var frm=$('#frmDataEdit');
              $.ajax({
                  type:'PUT',

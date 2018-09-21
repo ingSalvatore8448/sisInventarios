@@ -30,7 +30,7 @@
         <div class="modal-body">        
           <div class="form-group">
             <label for="name">Usuario</label>
-            <input type="text" name="usuarios"  value="{{$persona1->email}}" class="form-control" placeholder="Rol..">
+            <input type="text" name="email"  value="{{$persona1->email}}" class="form-control" placeholder="Rol..">
           </div>
                 
         </div>

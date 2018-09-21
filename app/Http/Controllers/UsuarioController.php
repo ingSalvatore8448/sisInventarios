@@ -28,7 +28,7 @@ class UsuarioController extends Controller
                 ->join('users as u', 'p.idPersona', '=', 'u.Persona_idPersona')
                 ->join('rol as r', 'p.Rol_idRol', '=', 'r.idRol')
                 ->join('departamento as d', 'p.Departamento_idDepartamento', '=', 'd.idDepartamento')
-                ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'p.correo', 'p.sexo', 'p.Fecha_cumple', 'p.imagen', 'u.email', 'r.nombre_rol', 'd.nombre_depar', 'u.Persona_idPersona','u.id')
+                ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'p.correo', 'p.sexo', 'p.Fecha_cumple', 'p.imagen', 'u.email', 'r.nombre_rol', 'd.nombre_depar', 'u.Persona_idPersona','u.id','u.idRol')
                 ->where('p.nombre', 'like', '%' . $qury . '%')
                 ->orwhere('p.apellido_Paterno', 'like', '%' . $qury . '%')
                 ->orwhere('p.apellido_Materno', 'like', '%' . $qury . '%')
@@ -79,6 +79,7 @@ class UsuarioController extends Controller
             $usuarios = new User;
             $usuarios->Persona_idPersona = $persona->idPersona;
             $usuarios->email= $request->get('usuarios');
+            $usuarios->idRol= $request->get('rol');
             $usuarios->Password= bcrypt($request->get('password'));
             $usuarios->save();
             DB::commit();
@@ -97,10 +98,10 @@ class UsuarioController extends Controller
     {
 
         $persona1=DB::table('persona as p')
-            ->join('usuarios as u','p.idPersona','u.Persona_idPersona')
+            ->join('users as u','p.idPersona','u.Persona_idPersona')
             ->join('rol as r','p.Rol_idRol','=','r.idRol')
             ->join('departamento as de','p.Departamento_idDepartamento','=','de.idDepartamento')
-            ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'p.correo', 'p.sexo', 'p.Fecha_cumple', 'p.imagen', 'u.email', 'r.nombre_rol', 'de.nombre_depar', 'u.Persona_idPersona','u.id')
+            ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'p.correo', 'p.sexo', 'p.Fecha_cumple', 'p.imagen', 'u.email', 'r.nombre_rol', 'de.nombre_depar', 'u.Persona_idPersona','u.id','u.idRol')
             ->where('p.idPersona','=',$id)
             ->first();
 
@@ -154,7 +155,7 @@ class UsuarioController extends Controller
     {
 
         $usuarios=User::findOrFail($id);
-        $usuarios->email= $request->get('usuarios');
+        $usuarios->email= $request->get('email');
         $usuarios->update();
         return Redirect::to('Usuario');
     }
@@ -173,5 +174,9 @@ class UsuarioController extends Controller
     }
     public function prueba(){
         return view('auth.loginprueba');
+    }
+
+    public function ver(){
+       return view('Usuario.profile');
     }
 }

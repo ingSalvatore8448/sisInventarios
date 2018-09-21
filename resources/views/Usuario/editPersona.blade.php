@@ -10,7 +10,7 @@ role="dialog" tabindex="-1" id="modal-editPersona-{{$persona1->idPersona}}">
                 aria-label="Close">
                      <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title">Editar Persona</h4>{{$persona1->idPersona}}
+                <center></center>
             </div>
 
 
@@ -126,6 +126,9 @@ role="dialog" tabindex="-1" id="modal-editPersona-{{$persona1->idPersona}}">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <input type="submit" class="btn btn-success" id="submit">
                 </div>
+</center>
 </div>
+        </div>
+            </div>
 </div>
 {!!Form::close()!!}   
