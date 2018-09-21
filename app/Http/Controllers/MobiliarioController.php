@@ -63,10 +63,12 @@ return view('Mobiliarios.create',['departamento'=>$departamento,'categoria'=>$ca
         $mobiliario->categoria_idcategoria=$request->get('nombre_cate');
          if(Input::hasFile('imagen')){
          	$file=Input::file('imagen');
-         	$file->move(public_path().'/Imagenes/Mobiliario/',$file->getClientOriginalName());
+         	$file->move(Storage_path().'/Imagenes/Mobiliario/',$file->getClientOriginalName());
          	$mobiliario->imagen=$file->getClientOriginalName();
 
+
          }
+
         $mobiliario->save();
    
     	return Redirect::to('Mobiliarios');
@@ -97,7 +99,7 @@ return view('Mobiliarios.create',['departamento'=>$departamento,'categoria'=>$ca
          $mobiliario->idMobiliario=$request->get('idMobi');
          if(Input::hasFile('imagen')){
             $file=Input::file('imagen');
-            $file->move(public_path().'/Imagenes/Mobiliario/',$file->getClientOriginalName());
+            $file->move(Storage_path().'/Imagenes/Mobiliario/',$file->getClientOriginalName());
             $mobiliario->imagen=$file->getClientOriginalName();
 
          }

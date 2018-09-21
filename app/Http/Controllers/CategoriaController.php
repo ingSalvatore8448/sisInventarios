@@ -19,9 +19,9 @@ class CategoriaController extends Controller
 
     }
     public function index(Request $request){
-        $cate= Categoria::select(['idcategoria','nombre_cate']);
+
         if($request->ajax()){
-            return Datatables::of($cate)
+            return Datatables::of(Categoria::query())
                 ->addColumn('action',function($cate){
                     return
                         '<button type="button" class="btn btn-info btn-sm btnEdit" data-edit="/Categorias/'.$cate->idcategoria.'/edit">Edit</button>

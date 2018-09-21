@@ -8,8 +8,7 @@
         <table class="table table-striped" id="users-table">
             <thead>
                 <tr>
-                    <th>Booking ID</th>
-                    <th>Customer Name</th>
+                    <th>Nombre Departamento</th>
                      <th>Operaciones</th>
                 </tr>
             </thead>
@@ -25,7 +24,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Add Form</h4>
+                <h4 class="modal-title">Registrar Departamento</h4>
             </div>
             <div class="modal-body">
                 <form role="form" id="frmDataAdd">
@@ -58,7 +57,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Edit Form</h4>
+                <h4 class="modal-title">Actualizar Departamento</h4>
             </div>
             <div class="modal-body">
             <form role="form" id="frmDataEdit">
@@ -89,7 +88,7 @@
             <form method="post" id="student_form">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Data</h4>
+                    <h4 class="modal-title">Ver Departamento</h4>
                 </div>
                 <div class="modal-body">
                     {{csrf_field()}}
@@ -151,7 +150,7 @@ $(function() {
         },
         ajax: '{!! route('Departamen.index') !!}',
         columns: [
-            { data: 'idDepartamento', name: 'idDepartamento' },
+
             { data: 'nombre_depar', name: 'nombre_depar' },
             { "data": "action", orderable:false, searchable: false}
            

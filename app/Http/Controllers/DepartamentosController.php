@@ -16,10 +16,10 @@ class DepartamentosController extends Controller
 
     public function index()
     {
-         $departa = Departamentos::select(['idDepartamento', 'nombre_depar']);
+
 
        if (request()->ajax()) {
-            return Datatables::of($departa)
+            return Datatables::of(Departamentos::query())
             ->addColumn('action',function($departa){
                 return 
                 '<button type="button" class="btn btn-info btn-sm btnEdit" data-edit="/Departamen/'.$departa->idDepartamento.'/edit">Edit</button>

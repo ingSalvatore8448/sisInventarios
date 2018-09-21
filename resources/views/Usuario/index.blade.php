@@ -39,7 +39,7 @@
 							<td>{{$use->email}}</td>
 							<td>{{$use->nombre_rol}}</td>
 							<td>{{$use->nombre_depar}}</td>
-							<td> <img src="{{asset('Imagenes/Usuarios/'.$use->imagen)}}" alt="{{ $use->nombre}}" height="60px" width="60px" class="img-thumbnail"></td>
+							<td> <img src="{{asset('Imagenes/Usuarios/'.$use->imagen)}}" alt="{{ $use->nombre}}" height="60px" width="60px" class="img-thumbnail">
 							<center><td>
 									<a href="{{URL::action('UsuarioController@show', $use->idPersona)}}"  > <span class="glyphicon glyphicon-eye-open"></span></a>
 
