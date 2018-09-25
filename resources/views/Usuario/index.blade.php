@@ -2,7 +2,7 @@
 @section('contenido')
 	<div class="row">
 		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-			<h3>Listado de Usuario<a href="Usuario/create" ><button class="btn btn-success">Nuevo</button></a></h3>
+			<center><h3>LISTADO DE USUARIOS</h3></center>
 			@include('Usuario.seachUser')
 
 		</div>
@@ -17,7 +17,6 @@
 					<th>Apellidos</th>
 					<th>telefono</th>
 					<th>DNI</th>
-					<th>correo</th>
 					<th>sexo</th>
 					<th>Cumpleaños</th>
 					<th>usuario</th>
@@ -33,19 +32,19 @@
 							<td>{{$use->apellido_Paterno.' '.$use->apellido_Materno}}</td>
 							<td>{{$use->telefono}}</td>
 							<td>{{$use->dni}}</td>
-							<td>{{$use->correo}}</td>
+
 							<td>{{$use->sexo}}</td>
 							<td>{{$use->Fecha_cumple}}</td>
 							<td>{{$use->email}}</td>
 							<td>{{$use->nombre_rol}}</td>
 							<td>{{$use->nombre_depar}}</td>
 							<td> <img src="{{asset('Imagenes/Usuarios/'.$use->imagen)}}" alt="{{ $use->nombre}}" height="60px" width="60px" class="img-thumbnail">
-							<center><td>
-									<a href="{{URL::action('UsuarioController@show', $use->idPersona)}}"  > <span class="glyphicon glyphicon-eye-open"></span></a>
 
-									<a href="" data-target="#modal-delete-{{$use->id}}" data-toggle="modal">
-										<span class="glyphicon glyphicon-trash" style="color: black; width: 10px"></span>
-									</a> </td>
+							<td>
+									<a href="{{URL::action('UsuarioController@show', $use->idPersona)}}"  > <button  class="btn btn-info" style="size: 10px" >
+											<i class="fa fa-edit"  aria-hidden="true"></i></button></a>
+								<a href="" data-target="#modal-delete-{{$use->id}}" data-toggle="modal"><button style="size: 5px "  class="btn btn-danger"><i class="fa fa-trash"  aria-hidden="true"></i>
+										</button></a> </td>
 
 							</center>
 						</tr>

@@ -28,9 +28,9 @@ class MobiliarioController extends Controller
     	$query=trim($request->get('searchText'));
     	$mobiliarios=DB::table('mobiliario as m')
     	->join('departamento as de','m.Departamento_idDepartamento', '=','de.idDepartamento')
-    	->join('categoria as ca', 'm.categoria_idcategoria','=','ca.idcategoria')
-    	->select('m.nombre_Mobi', 'm.idMobiliario','m.marca_Mobi','m.serie_Mobi','cantidad_Mobi','m.estado','m.fecaRe_Mobi','m.comentario','de.idDepartamento','de.nombre_depar','ca.idcategoria','ca.nombre_cate','m.imagen')
-
+    	->join('categorias as ca', 'm.categoria_idcategoria','=','ca.idcategoria')
+    	->select('m.nombre_Mobi', 'm.idMobiliario','m.marca_Mobi','m.serie_Mobi','m.cantidad_Mobi','m.estado','m.fecaRe_Mobi','m.comentario','de.idDepartamento','de.nombre_depar','ca.idcategoria','ca.nombre_cate','m.imagen')
+        ->where('estado','==',1? "Activo":"Desactivo")
     	->where('nombre_Mobi','like','%'.$query.'%')
     	->orwhere('m.marca_Mobi','LIKE','%'.$query.'%')
     	->orwhere('cantidad_Mobi','LIKE','%'.$query.'%')
@@ -119,6 +119,7 @@ return view('Mobiliarios.create',['departamento'=>$departamento,'categoria'=>$ca
 
           return Redirect::to('Mobiliarios');
     }
+
 
 
     

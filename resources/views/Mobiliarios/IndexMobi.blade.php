@@ -4,7 +4,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 <div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-		<h3>Listado de Mobiliarios<a href="Mobiliarios/create" ><button class="btn btn-success">Nuevo</button></a></h3>
+		<h3>Listado de Mobiliarios</h3>
 @include('Mobiliarios.searchMobi')
 			
 	</div>
@@ -46,11 +46,25 @@
 					<td>{{ $mobi->estado}}</td>
 			
 					<td>
-						<a href="{{URL::action('MobiliarioController@edit', $mobi->idMobiliario)}}"><button  class="btn btn-info" style="font-size: 10px">Editar</button></a>
 
-						 <a href="" data-target="#modal-delete-{{$mobi->idMobiliario}}" data-toggle="modal"><button style="font-size: 10px" class="btn btn-danger">Eliminar</button></a>
+						<a href="{{URL::action('MobiliarioController@edit', $mobi->idMobiliario)}}"><button  class="btn btn-info"  >
+								<i class="fa fa-edit" aria-hidden="true"></i>
 
-						 <a href="" data-target="#modal-delete-{{$mobi->idMobiliario}}" data-toggle="modal"><button style="font-size: 10px" class="btn btn-primary">show</button></a>
+							</button></a>
+
+						 <a href="" data-target="#modal-delete-{{$mobi->idMobiliario}}" data-toggle="modal"><button  class="btn btn-danger">
+
+								 <i class="fa fa-trash" aria-hidden="true"></i>
+
+							 </button></a>
+						@if($mobi->estado==1){
+						<a href="" data-target="" data-toggle="modal"><button  class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
+
+						}@else{
+						<a href="" data-target="" data-toggle="modal"><button  class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
+						}
+							@endif
+
 
 	
                     </td>

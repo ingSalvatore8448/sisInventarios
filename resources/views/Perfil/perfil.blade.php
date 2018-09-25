@@ -170,7 +170,7 @@
 
             <div class="col-md-7">
                 <div class="profile-content">
-                    Some user related content goes here... <div class="card f-b">
+                    PERFIL DE USUARIOS  <div class="card f-b">
                         <div class="col-md-6 col-md-offset-4">
                             <h4 class="title">Datos Personal</h4>
                         </div>

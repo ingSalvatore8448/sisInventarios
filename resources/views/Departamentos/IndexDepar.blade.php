@@ -1,6 +1,7 @@
 @extends('Layaouts.admin')
 
 @section('contenido')
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 <div class="container-fluid">
 		<h3>Listado de Departamento <a data-toggle="modal" id="add_data"><button class="btn btn-success">Nuevo</button></a></h3>
     
@@ -16,7 +17,7 @@
     </div>
 </div>
 
-
+    </div>
 
 <!-- start addmodal-->
 <div class="modal fade" tabindex="-1" role="dialog" id="mdlAddData">
@@ -57,7 +58,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Actualizar Departamento</h4>
+                <h4 class="modal-title">Edit Form</h4>
             </div>
             <div class="modal-body">
             <form role="form" id="frmDataEdit">
@@ -88,7 +89,7 @@
             <form method="post" id="student_form">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Ver Departamento</h4>
+                    <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
                     {{csrf_field()}}
@@ -198,7 +199,7 @@ $('#add_data').click(function (e) {
     });
 
 
-//calling edit modal and id info of data
+//cargar informacion de la lista
 
 
     $('#users-table').on('click','.btnEdit[data-edit]',function(e){

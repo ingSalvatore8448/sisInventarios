@@ -49,9 +49,9 @@
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>S</b>SIS</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>SIS</b>INVENTARIO</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -293,13 +293,16 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{url('Perfil')}}" class="btn btn-default btn-flat">Profile</a>
+
+
+                  <a href="{{url('Perfil')}}" class="btn btn-default btn-flat">Perfil</a>
                 </div>
 
                 <div class="pull-right">
+
                   @if(auth()->check())
-                    <a {{ route('logout') }} class="btn btn-default btn-flat" onclick="event.preventDefault();
-             document.getElementById('logout-form').submit();" >Sign out</a>
+                    <i class="fa fa-sign-in"  aria-hidden="true">  <a {{ route('logout') }} class="btn btn-default btn-flat" onclick="event.preventDefault();
+             document.getElementById('logout-form').submit();" >Cerrar secion</a></i>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       {{ csrf_field() }}
@@ -339,7 +342,7 @@
 
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Departamento</span>
+            <i class="fa fa-institution"  style="color: white" aria-hidden="true"></i><span>Departamento</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -351,22 +354,27 @@
         </li>
         <li class="treeview">
           <a href="">
-            <i class="fa fa-pie-chart"></i>
-            <span>USUARIOS</span>
+
+
+
+            <i class="fa fa-user-plus"  style="color: white" aria-hidden="true"></i>
+
+            <span>GESTION DE USUARIOS</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('Usuario')}}"><i class="fa fa-circle-o"></i>REGISTRAR USUARIOS</a></li>
-            <li><a href="{{route('profile')}}"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            <li><a href="{{url('Usuario/create')}}"><i class="fa fa-circle-o"></i>REGISTRAR USUARIOS</a></li>
+            <li><a href="{{url('Usuario')}}"><i class="fa fa-circle-o"></i>Listar Usuarios</a></li>
+
+
           </ul>
         </li>
         <li class="treeview">
           <a href="">
-            <i class="fa fa-pie-chart"></i>
+
+            <i class="fa fa-credit-card-alt" style="color: white" aria-hidden="true"></i>
             <span>Categorias</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -375,13 +383,11 @@
           <ul class="treeview-menu">
             <li><a href="{{url('Categorias')}}"><i class="fa fa-circle-o"></i>REGISTRAR CATEGORIAS</a></li>
             <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-laptop"></i>
+            <i class="fa fa-user-secret" style="color: white" aria-hidden="true"></i>
             <span>Roles</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -389,29 +395,32 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{url('Roles')}}"><i class="fa fa-circle-o"></i>REGISTRAR ROLES</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i>Lista Roles</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Mobiliarios</span>
+
+            <i class="fa fa-gear" style="color: white" aria-hidden="true"></i>
+            </i> <span>Mobiliarios</span>
             <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+              <i class=" fa fa-angle-left pull-right" ></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{URL('Mobiliarios')}}"><i class="fa fa-circle-o"></i>REGISTRAR MOBILIARIO</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+
+            <li><a href="{{URL('Mobiliarios/create')}}"><i class="fa fa-circle-o"></i>Registrar  Responsable</a></li>
+            <li><a href="{{URL('MobiResponsable')}}"><i class="fa fa-circle-o"></i>LISTAR  Responsable</a></li>
+            <li><a href="{{URL('MobiResponsable/create')}}"><i class="fa fa-circle-o"></i>Registrar  Responsable</a></li>
+            <li><a href="{{URL('Mobiliarios')}}"><i class="fa fa-circle-o"></i>Listar  Administrador</a></li>
+
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-table"></i> <span>Reportes</span>
+
+            <i class="fa fa-line-chart" style="color: white" aria-hidden="true"></i>
+            <span>Reportes</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -421,45 +430,9 @@
             <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
           </ul>
         </li>
-        <li>
-          <a href="pages/calendar.html">
-            <i class="fa fa-calendar"></i> <span>Calendar</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="pages/mailbox/mailbox.html">
-            <i class="fa fa-envelope"></i> <span>Mailbox</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
-              <small class="label pull-right bg-red">5</small>
-            </span>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-folder"></i> <span>Examples</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-            <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-            <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-            <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-            <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-            <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-            <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-          </ul>
-        </li>
+
       </ul>
+
     </section>
     <!-- /.sidebar -->
   </aside>
@@ -469,12 +442,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+        Inventario
+
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active">Inventario</li>
       </ol>
 
     </section>
