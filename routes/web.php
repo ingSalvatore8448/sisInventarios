@@ -44,24 +44,18 @@ Route::group(['middleware' => ['auth','is_admn']], function () {
 
 });
 
-
-
 Route::group(['middleware' => 'is_resonsable'],function (){
     Route::resource('MobiResponsable','MobiController');
 
     /*   Route::resource('MobiResponsable','MobiUserController');
     */
 
-
-
    });
-   /*
-   Route::get('departamento','DepartamentosController@index')->name('departamento');
 
-   Route::get('/Departamento','DepartamentosController@getTasks')->name('datatables.data');
-   */
 Route::get('Mensajes','MensajeController@Mensaje')->name('mensaje');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('Perfil','PerfController');
-
+Route::PATCH('estado/{idMobiliario}','MobiliarioController@canbiarestado');
+Route::resource('Tablero','HomController');
+Route::get('Mobiliari','MobiliarioController@detalle');
 Auth::routes();

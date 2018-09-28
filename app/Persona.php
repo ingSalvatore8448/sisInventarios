@@ -24,6 +24,7 @@ class Persona extends Model
          'imagen',
    
 
+
     ];
 
  }

@@ -936,7 +936,7 @@
                         if (!opts.insertMode && caretPos == getMaskLength() && !e.shiftKey) caretPos--;
                         caret(input, e.shiftKey ? pos.begin : caretPos, caretPos);
                     }, 0);
-                } else if ((k == opts.keyCode.HOME && !e.shiftKey) || k == opts.keyCode.PAGE_UP) { //Home or page_up
+                } else if ((k == opts.keyCode.HOME && !e.shiftKey) || k == opts.keyCode.PAGE_UP) { //Tablero or page_up
                     caret(input, 0, e.shiftKey ? pos.begin : 0);
                 } else if (k == opts.keyCode.ESCAPE || (k == 90 && e.ctrlKey)) { //escape && undo
                     checkVal(input, true, false, valueOnFocus.split(''));

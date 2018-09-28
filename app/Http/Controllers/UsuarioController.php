@@ -73,12 +73,12 @@ class UsuarioController extends Controller
             if (Input::hasFile('imagen')) {
                 $file = Input::file('imagen');
                 $file->move(public_path() . '/Imagenes/Usuarios/', $file->getClientOriginalName());
-                $persona->imagen = $file->getClientOriginalName();
+                $persona->imagen =  $file->getClientOriginalName();
             }
             $persona->save();
             $usuarios = new User;
             $usuarios->Persona_idPersona = $persona->idPersona;
-            $usuarios->email= $request->get('usuarios');
+            $usuarios->email= $request->get('email');
             $usuarios->idRol= $request->get('rol');
             $usuarios->Password= bcrypt($request->get('password'));
             $usuarios->save();

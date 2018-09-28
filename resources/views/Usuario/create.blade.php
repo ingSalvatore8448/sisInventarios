@@ -42,19 +42,19 @@
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Telefono</label>
-    <input type="number" class="form-control" id="telefono" required="Campo Obligatorio" value="{{old("nombre")}}" name="telefono"  placeholder="Telefono">
+    <input type="text" maxlength="5"  class="form-control"  id="telefono" size="9" required="Campo Obligatorio" value="{{old("nombre")}}" name="telefono"  placeholder="Telefono">
      </div>
    </div>
       <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">N°DNI</label>
-    <input type="number" class="form-control" id="dni" required="Campo Obligatorio" value="{{old("nombre")}}" name="dni"  placeholder="DNI">
+    <input type="number"  class="form-control"  id="dni" required="Campo Obligatorio" value="{{old("nombre")}}" name="dni"  placeholder="DNI">
      </div>
    </div>
      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Correo</label>
-    <input type="text" class="form-control" id="Correo" required="Campo Obligatorio" value="{{old("nombre")}}" name="correo"  placeholder="Correo">
+    <input type="email" class="form-control" id="Correo" required="Campo Obligatorio" value="{{old("nombre")}}" name="correo"  placeholder="Correo">
      </div>
    </div>
 
@@ -94,7 +94,7 @@
 
 <div class="form-group">
     <label for="exampleInputEmail1">Rol</label>
-    <select name="rol" class="form-control" >
+    <select name="rol" class="form-control" onreset="" >
         @foreach($rol as $ro)
         <option value="{{$ro->idRol}}">{{$ro->nombre_rol}}</option>
       @endforeach
@@ -104,7 +104,7 @@
   <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Usuario</label>
-    <input type="text" class="form-control" id="usuarios" required="Campo Obligatorio" value="{{old("nombre")}}" name="usuarios"  placeholder="Usuario">
+    <input type="text" class="form-control" id="email" required="Campo Obligatorio" value="{{old("nombre")}}" name="email"  placeholder="Usuario">
      </div>
    </div>
     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
@@ -130,4 +130,36 @@
 
 </center>
   {!!Form::close()!!}
+    @endsection
+
+
+@section('footer_scripts')
+    <script type="text/javascript">
+        var numero="1234567890";
+        $(document).ready(function(){
+            validarCualquierNumero()
+        });
+        function validarCualquierNumero(){
+            $(".numeric").numeric();
+            $(".integer").numeric(false, function() { alert("Integers only"); this.value = ""; this.focus(); });
+            $(".positive").numeric({ negative: false }, function() { alert("No negative values"); this.value = ""; this.focus(); });
+            $(".positive-integer").numeric({ decimal: false, negative: false }, function() { alert("Positive integers only"); this.value = ""; this.focus(); });
+            $(".decimal-2-places").numeric({ decimalPlaces: 2 });
+            $(".decimal-3-places").numeric({ decimalPlaces: 3 });
+            $("").keypress(function (e) {
+                var caracter=String.fromCharCode(e.which);
+                if(numero.indexOf(caracter)<0)
+                    return false;
+
+            });
+            $("#remove").click(
+                function(e)
+                {
+                    e.preventDefault();
+                    $(".numeric,.integer,.positive,.positive-integer,.decimal-2-places").removeNumeric();
+                }
+            );
+        }
+    </script>
+
     @endsection

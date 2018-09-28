@@ -47,7 +47,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>SIS</span>
       <!-- logo for regular state and mobile devices -->
@@ -125,7 +125,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="{{asset('distdist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
+                        <img src="{{asset('dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -295,7 +295,7 @@
                 <div class="pull-left">
 
 
-                  <a href="{{url('Perfil')}}" class="btn btn-default btn-flat">Perfil</a>
+                  <i class="fa fa-street-view" aria-hidden="true">  <a href="{{url('Perfil')}}" class="btn btn-default btn-flat">Perfil</a></i>
                 </div>
 
                 <div class="pull-right">
@@ -339,7 +339,7 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-
+        @if(Auth::user()->idRol==1)
         <li class="active treeview">
           <a href="#">
             <i class="fa fa-institution"  style="color: white" aria-hidden="true"></i><span>Departamento</span>
@@ -352,11 +352,10 @@
 
           </ul>
         </li>
+
         <li class="treeview">
+
           <a href="">
-
-
-
             <i class="fa fa-user-plus"  style="color: white" aria-hidden="true"></i>
 
             <span>GESTION DE USUARIOS</span>
@@ -367,10 +366,9 @@
           <ul class="treeview-menu">
             <li><a href="{{url('Usuario/create')}}"><i class="fa fa-circle-o"></i>REGISTRAR USUARIOS</a></li>
             <li><a href="{{url('Usuario')}}"><i class="fa fa-circle-o"></i>Listar Usuarios</a></li>
-
-
           </ul>
         </li>
+
         <li class="treeview">
           <a href="">
 
@@ -398,21 +396,23 @@
             <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i>Lista Roles</a></li>
           </ul>
         </li>
+        @endif
         <li class="treeview">
           <a href="#">
 
             <i class="fa fa-gear" style="color: white" aria-hidden="true"></i>
-            </i> <span>Mobiliarios</span>
+            </i> <span>Gestion de Mobiliarios</span>
             <span class="pull-right-container">
               <i class=" fa fa-angle-left pull-right" ></i>
             </span>
           </a>
           <ul class="treeview-menu">
 
-            <li><a href="{{URL('Mobiliarios/create')}}"><i class="fa fa-circle-o"></i>Registrar  Responsable</a></li>
-            <li><a href="{{URL('MobiResponsable')}}"><i class="fa fa-circle-o"></i>LISTAR  Responsable</a></li>
+            <li><a href="{{URL('Mobiliarios/create')}}"><i class="fa fa-circle-o"></i>Registrar Administrador</a></li>
+            <li><a href="{{URL('Mobiliarios')}}"><i class="fa fa-circle-o"></i>LISTAR  Administrador</a></li>
             <li><a href="{{URL('MobiResponsable/create')}}"><i class="fa fa-circle-o"></i>Registrar  Responsable</a></li>
-            <li><a href="{{URL('Mobiliarios')}}"><i class="fa fa-circle-o"></i>Listar  Administrador</a></li>
+            <li><a href="{{URL('MobiResponsable')}}"><i class="fa fa-circle-o"></i>Listar  Responsable</a></li>
+            <li><a href="{{URL('Mobiliari')}}"><i class="fa fa-circle-o"></i>Detalle Mobiliarios</a></li>
 
           </ul>
         </li>

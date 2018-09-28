@@ -202,22 +202,22 @@ $('#add_data').click(function (e) {
 //cargar informacion de la lista
 
 
-    $('#users-table').on('click','.btnEdit[data-edit]',function(e){
-        e.preventDefault();
-        var url = $(this).data('edit');
-          $.ajax({
-              url : url,
-              type : 'GET',
-              datatype : 'json',
-              success:function(data){
-                            $('#edit_ID').val(data.idDepartamento);
-                            $('#edit_name').val(data.nombre_depar);
-                            $('.edit_errorName').addClass('hidden');
-                            $('#mdlEditData').modal('show');
+        $('#users-table').on('click','.btnEdit[data-edit]',function(e){
+            e.preventDefault();
+            var url = $(this).data('edit');
+            $.ajax({
+                url : url,
+                type : 'GET',
+                datatype : 'json',
+                success:function(data){
+                    $('#edit_ID').val(data.idDepartamento);
+                    $('#edit_name').val(data.nombre_depar);
+                    $('.edit_errorName').addClass('hidden');
+                    $('#mdlEditData').modal('show');
 
-                        }
+                }
 
-                    });
+            });
 
     });
 // updating data infomation

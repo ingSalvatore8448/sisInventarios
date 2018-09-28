@@ -118,7 +118,7 @@
 //
 // *Version: 1.0, Last updated: 3/3/2010*
 // 
-// Project Home - http://benalman.com/projects/jquery-dotimeout-plugin/
+// Project Tablero - http://benalman.com/projects/jquery-dotimeout-plugin/
 // GitHub       - http://github.com/cowboy/jquery-dotimeout/
 // Source       - http://github.com/cowboy/jquery-dotimeout/raw/master/jquery.ba-dotimeout.js
 // (Minified)   - http://github.com/cowboy/jquery-dotimeout/raw/master/jquery.ba-dotimeout.min.js (1.0kb)

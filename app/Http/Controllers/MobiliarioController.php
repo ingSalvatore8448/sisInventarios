@@ -13,14 +13,14 @@ use Inventario\Http\Requests\DepartamentosRequest;
 use Inventario\Http\Requests\CategoriaFormRequest;
 use Inventario\Http\Requests\Mobiliariorequest;
 use DB;
+use Mockery\Exception;
 
 class MobiliarioController extends Controller
 {
     public function __construct()
     {
 
-
-    }
+   }
 
     public function index(Request $request){
     if($request){
@@ -30,7 +30,6 @@ class MobiliarioController extends Controller
     	->join('departamento as de','m.Departamento_idDepartamento', '=','de.idDepartamento')
     	->join('categorias as ca', 'm.categoria_idcategoria','=','ca.idcategoria')
     	->select('m.nombre_Mobi', 'm.idMobiliario','m.marca_Mobi','m.serie_Mobi','m.cantidad_Mobi','m.estado','m.fecaRe_Mobi','m.comentario','de.idDepartamento','de.nombre_depar','ca.idcategoria','ca.nombre_cate','m.imagen')
-        ->where('estado','==',1? "Activo":"Desactivo")
     	->where('nombre_Mobi','like','%'.$query.'%')
     	->orwhere('m.marca_Mobi','LIKE','%'.$query.'%')
     	->orwhere('cantidad_Mobi','LIKE','%'.$query.'%')
@@ -46,9 +45,9 @@ class MobiliarioController extends Controller
 
     }
     public function create(){
-       $departamento=Departamentos::all();
+        $departamento=Departamentos::all();
         $categoria=Categoria::all();
-return view('Mobiliarios.create',['departamento'=>$departamento,'categoria'=>$categoria]);
+        return view('Mobiliarios.create',['departamento'=>$departamento,'categoria'=>$categoria]);
     }
     public function store(Mobiliariorequest $request){
     	$mobiliario=new Mobiliarios();
@@ -85,6 +84,22 @@ return view('Mobiliarios.create',['departamento'=>$departamento,'categoria'=>$ca
         return view("Mobiliarios.editMobi",[ "mobiliario"=>$mobiliario,"departamento"=>$departamento,"categoria"=>$categoria]);
 
     }
+
+    public function canbiarestado($id){
+     $esta=Mobiliarios::findOrFail($id);
+     $newestado=('bueno'==$esta->estado)?'malo':'bueno';
+     try{
+         $esta->fill(['estado'=>$newestado])->save();
+     } catch (Exception $e){
+         logger($e->getMessage());
+     }
+
+     return Redirect::to('Mobiliarios');
+    }
+
+
+
+
     public function update(Mobiliariorequest $request,$id){
         $mobiliario=Mobiliarios::findOrFail($id);
 
@@ -119,7 +134,30 @@ return view('Mobiliarios.create',['departamento'=>$departamento,'categoria'=>$ca
 
           return Redirect::to('Mobiliarios');
     }
+       public function detalle(Request $request){
 
+           if($request){
+
+               $query=trim($request->get('searchText'));
+               $mobiliarios=DB::table('mobiliario as m')
+                   ->join('departamento as de','m.Departamento_idDepartamento', '=','de.idDepartamento')
+                   ->join('categorias as ca', 'm.categoria_idcategoria','=','ca.idcategoria')
+                   ->select('m.nombre_Mobi', 'm.idMobiliario','m.marca_Mobi','m.serie_Mobi','m.cantidad_Mobi','m.estado','m.fecaRe_Mobi','m.comentario','de.idDepartamento','de.nombre_depar','ca.idcategoria','ca.nombre_cate','m.imagen')
+                   ->where('estado','==',1? "Activo":"Desactivo")
+                   ->where('nombre_Mobi','like','%'.$query.'%')
+                   ->orwhere('m.marca_Mobi','LIKE','%'.$query.'%')
+                   ->orwhere('cantidad_Mobi','LIKE','%'.$query.'%')
+                   ->orderBy('m.nombre_Mobi','desc')
+
+                   ->paginate(7);
+
+               return view('Mobiliarios.detalleMobi',['mobiliarios'=>$mobiliarios,'searchText'=>$query]);
+
+
+
+           }
+
+       }
 
 
     

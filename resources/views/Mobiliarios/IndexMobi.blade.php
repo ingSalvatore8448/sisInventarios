@@ -2,13 +2,12 @@
 @section('contenido')
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
-<div class="row">
+  <div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 		<h3>Listado de Mobiliarios</h3>
-@include('Mobiliarios.searchMobi')
-			
+		@include('Mobiliarios.searchMobi')
 	</div>
-</div>
+  </div>
 
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -47,32 +46,17 @@
 			
 					<td>
 
-						<a href="{{URL::action('MobiliarioController@edit', $mobi->idMobiliario)}}"><button  class="btn btn-info"  >
-								<i class="fa fa-edit" aria-hidden="true"></i>
+						<a href="{{URL::action('MobiliarioController@edit', $mobi->idMobiliario)}}"><button  class="btn btn-info" ><i class="fa fa-edit" aria-hidden="true"></i></button></a>
 
-							</button></a>
+						<a data-target="#modal-delete-{{$mobi->idMobiliario}}" data-toggle="modal"><button  class="btn btn-danger">
+								 <i class="fa fa-trash" aria-hidden="true"></i></button></a>
 
-						 <a href="" data-target="#modal-delete-{{$mobi->idMobiliario}}" data-toggle="modal"><button  class="btn btn-danger">
-
-								 <i class="fa fa-trash" aria-hidden="true"></i>
-
-							 </button></a>
-						@if($mobi->estado==1){
-						<a href="" data-target="" data-toggle="modal"><button  class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
-
-						}@else{
-						<a href="" data-target="" data-toggle="modal"><button  class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
-						}
-							@endif
-
-
-	
-                    </td>
-
-
+						<a data-target="#modal-estado-{{$mobi->idMobiliario}}" data-toggle="modal"><button  class="btn btn-primary">
+								<i class="fa fa-trash" aria-hidden="true"></i></button></a>
+					</td>
 				</tr>
-						
-			    	@include('Mobiliarios.deletem')
+				    @include('Mobiliarios.estado')
+			    	@include('MobiResponsable.deletem')
 				@endforeach
 
 			</table>
@@ -82,7 +66,15 @@
 			
 	</div>
 </div>
+
  
 @endsection
 
+@section('footer_scripts')
 
+        <script type="text/javascript">
+
+
+
+	</script>
+	@endsection
