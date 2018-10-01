@@ -34,7 +34,6 @@ class UserRequest extends FormRequest
            'Fecha_cumple'=>'required | max:50 ',
             'rol'=>'required | max:50 ',
             'departamento'=>'required | max:50 ',
-            'correo'=>'required | max:50 ',
             'email'=>'required |unique:users',
              'password'=>'required',
             'imagen'=>'mimes:jpeg,bmp,PNG '

@@ -9,6 +9,7 @@ use Inventario\Http\Requests\PersonaRequest;
 use Inventario\Persona;
 use Inventario\User;
 use Response;
+use Validator;
 use DB;
 class UsuarioController extends Controller
 {
@@ -28,7 +29,7 @@ class UsuarioController extends Controller
                 ->join('users as u', 'p.idPersona', '=', 'u.Persona_idPersona')
                 ->join('rol as r', 'p.Rol_idRol', '=', 'r.idRol')
                 ->join('departamento as d', 'p.Departamento_idDepartamento', '=', 'd.idDepartamento')
-                ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'p.correo', 'p.sexo', 'p.Fecha_cumple', 'p.imagen', 'u.email', 'r.nombre_rol', 'd.nombre_depar', 'u.Persona_idPersona','u.id','u.idRol')
+                ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'p.sexo', 'p.Fecha_cumple', 'p.imagen', 'u.email','u.username', 'r.nombre_rol', 'd.nombre_depar', 'u.Persona_idPersona','u.id','u.idRol')
                 ->where('p.nombre', 'like', '%' . $qury . '%')
                 ->orwhere('p.apellido_Paterno', 'like', '%' . $qury . '%')
                 ->orwhere('p.apellido_Materno', 'like', '%' . $qury . '%')
@@ -64,7 +65,6 @@ class UsuarioController extends Controller
             $persona->apellido_Materno = $request->get('apellido_ma');
             $persona->telefono = $request->get('telefono');
             $persona->dni= $request->get('dni');
-            $persona->correo= $request->get('correo');
             $persona->sexo= $request->get('sexo');
             $persona->Fecha_cumple= $request->get('Fecha_cumple');
             $persona->Rol_idRol= $request->get('rol');
@@ -101,7 +101,7 @@ class UsuarioController extends Controller
             ->join('users as u','p.idPersona','u.Persona_idPersona')
             ->join('rol as r','p.Rol_idRol','=','r.idRol')
             ->join('departamento as de','p.Departamento_idDepartamento','=','de.idDepartamento')
-            ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'p.correo', 'p.sexo', 'p.Fecha_cumple', 'p.imagen', 'u.email', 'r.nombre_rol', 'de.nombre_depar', 'u.Persona_idPersona','u.id','u.idRol')
+            ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'p.sexo', 'p.Fecha_cumple', 'p.imagen', 'u.email','u.username', 'r.nombre_rol', 'de.nombre_depar', 'u.Persona_idPersona','u.id','u.idRol')
             ->where('p.idPersona','=',$id)
             ->first();
 
@@ -126,38 +126,69 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function updatePersona(Request $request, $id)
     {
+        $valida=[
+            'nombre'=>'required | max:50 ',
+            'apellido_pa'=>'required | max:50 ',
+            'apellido_ma'=>'required | max:50 ',
+            'telefono'=>'required | max:50 ',
+            'dni'=>'required | max:50 ',
+            'sexo'=>'required | max:50 ',
+            'Fecha_cumple'=>'required | max:50 ',
+            'rol'=>'required | max:50 ',
+            'departamento'=>'required | max:50 ',
+            'imagen'=>'mimes:jpeg,bmp,PNG ',
 
-    }
-    public function updatePersona(UserRequest $request, $id)
-    {
-        $persona=Persona::findOrfail($id);
-        $persona->nombre=$request->get('nombre');
-        $persona->apellido_Paterno=$request->get('apellido_pa');
-        $persona->apellido_Materno=$request->get('apellido_ma');
-        $persona->telefono=$request->get('telefono');
-        $persona->dni=$request->get('dni');
-        $persona->Fecha_cumple=$request->get('Fecha_cumple');
-        $persona->sexo=$request->get('sexo');
-        $persona->correo=$request->get('correo');
-        $persona->Rol_idRol=$request->get('rol');
-        $persona->Departamento_idDepartamento=$request->get('departamento');
-        if (Input::hasFile('imagen')) {
-            $file = Input::file('imagen');
-            $file->move(public_path() . '/Imagenes/Usuarios/', $file->getClientOriginalName());
-            $persona->imagen = $file->getClientOriginalName();
+
+
+        ];
+        $validator = Validator::make(Input::all(),$valida);
+        if ($validator->fails()) {
+            return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
+
+        }else{
+            $persona=Persona::findOrfail($id);
+            $persona->nombre=$request->get('nombre');
+            $persona->apellido_Paterno=$request->get('apellido_pa');
+            $persona->apellido_Materno=$request->get('apellido_ma');
+            $persona->telefono=$request->get('telefono');
+            $persona->dni=$request->get('dni');
+            $persona->sexo=$request->get('sexo');
+            $persona->Fecha_cumple=$request->get('Fecha_cumple');
+            $persona->Rol_idRol=$request->get('rol');
+            $persona->Departamento_idDepartamento=$request->get('departamento');
+
+            if (Input::hasFile('imagen')) {
+                $file = Input::file('imagen');
+                $file->move(public_path() . '/Imagenes/Usuarios/', $file->getClientOriginalName());
+                $persona->imagen = $file->getClientOriginalName();
+            }
+            $persona->update();
+            return Redirect::to('Usuario');
         }
-        $persona->update();
-        return Redirect::to('Usuario');
-    }
-    public function updateUser(PersonaRequest $request, $id)
-    {
 
-        $usuarios=User::findOrFail($id);
-        $usuarios->email= $request->get('email');
-        $usuarios->update();
-        return Redirect::to('Usuario');
+
+
+    }
+    public function updateUser( Request $request, $id)
+    {
+        $regla=[
+            'username'=>'required |max:50'
+
+        ];
+        $validate=Validator::make(Input::all(),$regla);
+        if($validate->fails()){
+            return response()->json(array('errors' => $validate->getMessageBag()->toArray()));
+        } else{
+            $usuarios=User::findOrFail($id);
+            $usuarios->email= $request->get('email');
+            $usuarios->username=$request->get('username');
+            $usuarios->update();
+            return Redirect::to('Usuario');
+        }
+
+
     }
     /**
      * Remove the specified resource from storage.

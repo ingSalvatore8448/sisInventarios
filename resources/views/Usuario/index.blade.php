@@ -17,6 +17,7 @@
 					<th>Apellidos</th>
 					<th>telefono</th>
 					<th>DNI</th>
+					<th>Email</th>
 					<th>sexo</th>
 					<th>Cumpleaños</th>
 					<th>usuario</th>
@@ -32,10 +33,10 @@
 							<td>{{$use->apellido_Paterno.' '.$use->apellido_Materno}}</td>
 							<td>{{$use->telefono}}</td>
 							<td>{{$use->dni}}</td>
-
+							<td>{{$use->email}}</td>
 							<td>{{$use->sexo}}</td>
 							<td>{{$use->Fecha_cumple}}</td>
-							<td>{{$use->email}}</td>
+							<td>{{$use->username}}</td>
 							<td>{{$use->nombre_rol}}</td>
 							<td>{{$use->nombre_depar}}</td>
 							<td> <img src="{{asset('Imagenes/Usuarios/'.$use->imagen)}}" alt="{{ $use->nombre}}" height="60px" width="60px" class="img-thumbnail">

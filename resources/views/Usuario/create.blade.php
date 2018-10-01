@@ -53,8 +53,8 @@
    </div>
      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
-    <label for="exampleInputEmail1">Correo</label>
-    <input type="email" class="form-control" id="Correo" required="Campo Obligatorio" value="{{old("nombre")}}" name="correo"  placeholder="Correo">
+    <label for="exampleInputEmail1">Usuario</label>
+    <input type="text" class="form-control" id="username" required="Campo Obligatorio" value="{{old("nombre")}}" name="username"  placeholder="Correo">
      </div>
    </div>
 
@@ -103,7 +103,7 @@
  </div>
   <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
-    <label for="exampleInputEmail1">Usuario</label>
+    <label for="exampleInputEmail1">Correo</label>
     <input type="text" class="form-control" id="email" required="Campo Obligatorio" value="{{old("nombre")}}" name="email"  placeholder="Usuario">
      </div>
    </div>

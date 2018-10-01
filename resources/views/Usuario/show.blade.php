@@ -216,8 +216,8 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label>	correo</label>
-                                        <input type="text" class="form-control text-center" value="{{$persona1->	correo}}" disabled>
+                                        <label>Usuario</label>
+                                        <input type="text" class="form-control text-center" value="{{$persona1->username}}" disabled>
 
                                     </div>
                                 </div>

@@ -29,10 +29,15 @@
       
         <div class="modal-body">        
           <div class="form-group">
-            <label for="name">Usuario</label>
+            <label for="name">Correo</label>
             <input type="text" name="email"  value="{{$persona1->email}}" class="form-control" placeholder="Rol..">
           </div>
-                
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="name">Username</label>
+                <input type="text" name="username"  value="{{$persona1->username}}" class="form-control" placeholder="Rol..">
+            </div>
         </div>
        <div class="modal-footer">                  
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
