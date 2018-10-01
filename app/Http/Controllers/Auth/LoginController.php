@@ -42,7 +42,7 @@ class LoginController extends Controller
     protected function sendFailedLoginResponse(Request $request)
     {
 
-        if ( ! User::where('email', $request->email)->first() ) {
+        if ( ! User::where('username', $request->username)->first() ) {
             return redirect()->back()
                 ->withInput($request->only($this->username(), 'remember'))
                 ->withErrors([
@@ -50,7 +50,7 @@ class LoginController extends Controller
                 ]);
         }
 
-        if ( ! User::where('email', $request->email)->where('password', bcrypt($request->password))->first() ) {
+        if ( ! User::where('username', $request->username)->where('password', bcrypt($request->password))->first() ) {
             return redirect()->back()
                 ->withInput($request->only($this->username(), 'remember'))
                 ->withErrors([
@@ -58,5 +58,9 @@ class LoginController extends Controller
                 ]);
         }
 
+    }
+    public  function username()
+    {
+        return 'username';
     }
 }

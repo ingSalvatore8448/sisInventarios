@@ -1,8 +1,6 @@
 <div class="modal fade modal-slide-in-right" aria-hidden="true"
      role="dialog" tabindex="-1" id="modal-editPersona-{{$persona1->idPersona}}">
-    {{Form::Open(array('action'=>array('PerfController@updatePersona',$persona1->idPersona),'method'=>'patch'))}}
-
-
+    {{Form::Open(array('action'=>array('PerfController@updatePersona',$persona1->idPersona),'method'=>'patch','files'=>true))}}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,15 +8,9 @@
                         aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-                <center></center>
             </div>
-
-
-
-
             <div class="modal-body">
                 <div class="row">
-
                     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                         <div class="form-group">
                             <label for="exampleInputEmail1">nombre</label>
@@ -54,14 +46,6 @@
                                    value="{{$persona1->dni}}" name="dni"  placeholder="DNI">
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Correo</label>
-                            <input type="text" class="form-control" id="Correo" required="Campo Obligatorio"
-                                   value="{{$persona1->correo}}" name="correo"  placeholder="Correo">
-                        </div>
-                    </div>
-
                     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Departamento</label>
@@ -100,7 +84,6 @@
 
                     </div>
                     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
                         <div class="form-group">
                             <label for="exampleInputEmail1">Rol</label>
                             <select name="rol" class="form-control" >
@@ -110,7 +93,7 @@
                             </select>
                         </div>
                     </div>
-                    <div  class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                    <div style="padding-bottom: 50px"  class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Imagen</label>
                             <input type="file" class="form-control" id="imagen" name="imagen">
@@ -120,13 +103,12 @@
                         </div>
                     </div>
                 </div>
-                </center>
-                <center>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-success" id="submit">
-                    </div>
-                </center>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-success" id="submit">
+                </div>
+
             </div>
         </div>
     </div>

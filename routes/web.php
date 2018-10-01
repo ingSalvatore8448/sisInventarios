@@ -65,4 +65,5 @@ Route::resource('Perfil','PerfController');
 Route::PATCH('estado/{idMobiliario}','MobiliarioController@canbiarestado');
 Route::resource('Tablero','HomController');
 Route::get('Mobiliari','MobiliarioController@detalle');
+Route::post('user/Password','PerfController@canbiarpass');
 Auth::routes();

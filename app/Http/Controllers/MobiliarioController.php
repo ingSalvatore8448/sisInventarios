@@ -14,6 +14,7 @@ use Inventario\Http\Requests\CategoriaFormRequest;
 use Inventario\Http\Requests\Mobiliariorequest;
 use Inventario\Http\Requests\MobiRes;
 use DB;
+
 use Mockery\Exception;
 
 class MobiliarioController extends Controller
@@ -45,9 +46,11 @@ class MobiliarioController extends Controller
 
     }
     public function create(){
+        $mobi=Mobiliarios::all();
         $departamento=Departamentos::all();
         $categoria=Categoria::all();
-        return view('Mobiliarios.create',['departamento'=>$departamento,'categoria'=>$categoria]);
+
+        return view('Mobiliarios.create',['departamento'=>$departamento,'categoria'=>$categoria,'mobi'=>$mobi]);
     }
     public function store(Mobiliariorequest $request){
     	$mobiliario=new Mobiliarios();
@@ -59,7 +62,10 @@ class MobiliarioController extends Controller
         $mobiliario->comentario=$request->get("comentario");
         $mobiliario->Departamento_idDepartamento=$request->get('nombre_depar');
         $mobiliario->categoria_idcategoria=$request->get('nombre_cate');
-         if(Input::hasFile('imagen')){
+        if(get('imagen')){
+       $mobiliario->imagen=$request->get('imagen');
+        }
+        else if(Input::hasFile('imagen')){
          	$file=Input::file('imagen');
          	$file->move(public_path().'/Imagenes/Mobiliario/',$file->getClientOriginalName());
          	$mobiliario->imagen=$file->getClientOriginalName();

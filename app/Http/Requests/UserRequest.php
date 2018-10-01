@@ -35,6 +35,7 @@ class UserRequest extends FormRequest
             'rol'=>'required | max:50 ',
             'departamento'=>'required | max:50 ',
             'email'=>'required |unique:users',
+            'username'=>'required |unique:users',
              'password'=>'required',
             'imagen'=>'mimes:jpeg,bmp,PNG '
 

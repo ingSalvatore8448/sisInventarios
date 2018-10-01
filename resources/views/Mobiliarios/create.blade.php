@@ -1,3 +1,4 @@
+
 @extends('layaouts.admin')
 @section('contenido')
 
@@ -22,7 +23,7 @@
  {{Form::token()}}
 
  <div class="row">
-   
+
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
 
@@ -73,7 +74,7 @@
        <option>Seleccione estado</option>
        <option value="bueno">bueno</option>
           <option value="malo">malo</option>
-     
+
     </select>
      </div>
  </div>
@@ -85,22 +86,22 @@
         <span class="glyphicon glyphicon-th"></span>
     </div>
 </div>
-   
+
  </div>
   <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 <div class="form-group">
     <label for="exampleInputEmail1">Comentario</label>
   <input type="text" class="form-control" id="comentario" required="Campo Obligatorio" name="comentario"  placeholder="comentario">
      </div>
-   
+
  </div>
- 
+
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
  <div class="form-group">
     <label for="exampleInputEmail1">Imagen</label>
     <input type="file" class="form-control" id="imagen" name="imagen">
-     <input type="hidden"  class="form-control" src="{{asset('dist/img/user2-160x160.jpg')}}" id="imag" name="imagen">
-     </div>
+     <?php if($mobi->imagen==""){ $mobi->imagen="Imagenes/avatar.jpg"; }  ?>
+ </div>
    </div></br>
      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"></br>
        <div class="form-group">
@@ -109,6 +110,6 @@
             </div>
 </div>
 </div>
-  {!!Form::close()!!}   
+  {!!Form::close()!!}
 
   @endsection

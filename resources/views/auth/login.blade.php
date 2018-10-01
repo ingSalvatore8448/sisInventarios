@@ -430,13 +430,13 @@
         <div class="login-wrap">
             <p class="login-img"><i class="icon_lock_alt"></i></p>
 
-            <div class="input-group {{ $errors->has('email') ? ' has-error' : '' }}">
+            <div class="input-group {{ $errors->has('username') ? ' has-error' : '' }}">
 
                 <span class="input-group-addon"><i class="icon_profile"></i></span>
 
-                <input id="email" type="email" class="form-control" name="email" required  autofocus>
-                @if ($errors->has('email'))
-                    <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
+                <input id="username" type="text" class="form-control" name="username" required  autofocus>
+                @if ($errors->has('username'))
+                    <span class="help-block"><strong>{{ $errors->first('username') }}</strong></span>
                 @endif
 
 
