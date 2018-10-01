@@ -80,23 +80,5 @@ class RegisterController extends Controller
          return Redirect::to('Usuario')->with('msg', 'La cuenta se creo correctamente...');
     }
 
- public  function index(Request $request ){
-        if ($request) {
-            $qury = trim($request->get('searchText'));
-            $user = DB::table('Persona as p')
-                ->join('usuarios as u', 'p.idPersona', '=', 'u.Persona_idPersona')
-                ->join('rol as r', 'p.Rol_idRol', '=', 'r.idRol')
-                ->join('departamento as d', 'p.Departamento_idDepartamento', '=', 'd.idDepartamento')
-                ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'p.correo', 'p.sexo', 'p.Fecha_cumple', 'p.imagen', 'u.email', 'r.nombre_rol', 'd.nombre_depar', 'u.Persona_idPersona','u.id')
-                ->where('p.nombre', 'like', '%' . $qury . '%')
-                ->orwhere('p.apellido_Paterno', 'like', '%' . $qury . '%')
-                ->orwhere('p.apellido_Materno', 'like', '%' . $qury . '%')
-                ->orderBy('p.nombre', 'desc')
-                ->paginate(7);
-        $rol = DB::table('rol')->get();
-        $departamento = DB::table('departamento')->get();
-            return view('Usuario.index',['user'=>$user,'rol'=>$rol,'departamento'=>$departamento,'searchText'=>$qury]);
-        }
-    }
 
 }

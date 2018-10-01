@@ -3,7 +3,7 @@
 
 <div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-  <h3>Nuevo Mobiliario</h3>
+  <h1>Editar Mobiliario</h1>
 @if (count($errors)>0)
 			<div class="alert alert-danger">
 				<ul>
@@ -15,28 +15,29 @@
 			@endif
 </div>
 </div>
+{!!Form::model($mobiliario,['method'=>'PATCH','route'=>['update',$mobiliario->idMobiliario],'files'=>'true'])!!}
 
-
-
-  {!! Form::open(array('url'=>'Mobiliarios','method'=>'POST','autocomplete'=>'off','files'=>true)) !!}
  {{Form::token()}}
-
- <div class="row">
-   
+ <div class="row"> 
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
-
     <label for="exampleInputEmail1">Mobiliario</label>
-    <input  type="text" class="form-control" id="nombre" required="Campo Obligatorio" value="{{old("nombre")}}" name="nombre"  placeholder="Mobiliario">
+    <input type="text" class="form-control" id="nombre" required="Campo Obligatorio" value="{{$mobiliario->	nombre_Mobi}}" name="nombre" >
+     <input type="hidden"  class="form-control" id="nombre" value="{{$mobiliario->idMobiliario}}" name="idMobi" >
      </div>
    </div>
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Departamento</label>
     <select name="nombre_depar" class="form-control">
-      <option value="">Seleccione departamento</option>
+       <option value="selecione categoria"></option>
       @foreach($departamento as $depa)
-      <option value="{{ $depa->idDepartamento}}">{{$depa->nombre_depar}}</option>
+       @if($depa->idDepartamento==$mobiliario->idMobiliario)
+
+      <option value="{{ $depa->idDepartamento}}" >{{$depa->nombre_depar}}</option>
+      @else
+      <option value="{{ $depa->idDepartamento}}" selected>{{$depa->nombre_depar}}</option>
+      @endif
       @endforeach
     </select>
      </div>
@@ -44,13 +45,13 @@
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
   <div class="form-group">
     <label for="exampleInputEmail1">Marca</label>
-    <input type="text" class="form-control" id="marca" required="Campo Obligatorio" value="{{old("Marca")}}" name="marca"  placeholder="Marca">
+    <input type="text" class="form-control" id="marca" required="Campo Obligatorio" value="{{$mobiliario->		marca_Mobi}}" name="marca">
      </div>
 </div>
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
      <div class="form-group">
     <label for="exampleInputEmail1">Serie</label>
-    <input type="text" class="form-control" id="serie" required="Campo Obligatorio" value="{{old("serie")}}" name="serie"  placeholder="serie">
+    <input type="text" class="form-control" id="serie" required="Campo Obligatorio" value="{{$mobiliario->		serie_Mobi}}" name="serie"  placeholder="serie">
      </div>
    </div>
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
@@ -58,29 +59,28 @@
 <div class="form-group">
     <label for="exampleInputEmail1">Categoria</label>
     <select name="nombre_cate" class="form-control" >
-      <option value="">Seleccione categoria</option>
+       <option value="selecione categoria"></option>
       @foreach($categoria as $cate)
+      @if($cate->idcategoria==$mobiliario->idMobiliario)
 
-      <option value="{{$cate->idcategoria}}">{{$cate->nombre_cate}}</option>
+      <option value="{{$cate->idcategoria}}"  >{{$cate->nombre_cate}}</option>
+      @else
+      <option value="{{$cate->idcategoria}}"  selected>{{$cate->nombre_cate}}</option>
+      @endif
       @endforeach
     </select>
      </div>
  </div>
-<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-<div class="form-group">
-    <label for="exampleInputEmail1">ESTADO</label>
-    <select name="estado" class="form-control" >
-       <option>Seleccione estado</option>
-       <option value="bueno">bueno</option>
-          <option value="malo">malo</option>
-     
-    </select>
+     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+         <div class="form-group">
+             <label for="exampleInputEmail1">Estado</label>
+             <input type="text" class="form-control" id="comentario" disabled   value="{{$mobiliario->estado}}">
+         </div>
      </div>
- </div>
-  <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
        <label for="exampleInputEmail1">Fecha</label>
 <div class="input-group date"  data-provide="datepicker">
-    <input type="text" name="fecha" id="date" class="form-control">
+    <input type="text" name="fecha" value="{{$mobiliario->fecaRe_Mobi}}" id="date" class="form-control">
     <div class="input-group-addon">
         <span class="glyphicon glyphicon-th"></span>
     </div>
@@ -90,7 +90,7 @@
   <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 <div class="form-group">
     <label for="exampleInputEmail1">Comentario</label>
-  <input type="text" class="form-control" id="comentario" required="Campo Obligatorio" name="comentario"  placeholder="comentario">
+  <input type="text" class="form-control" id="comentario" required="Campo Obligatorio" name="comentario"  value="{{$mobiliario->comentario}}">
      </div>
    
  </div>
@@ -99,13 +99,15 @@
  <div class="form-group">
     <label for="exampleInputEmail1">Imagen</label>
     <input type="file" class="form-control" id="imagen" name="imagen">
-     <input type="hidden"  class="form-control" src="{{asset('dist/img/user2-160x160.jpg')}}" id="imag" name="imagen">
+    @if(($mobiliario->imagen)!="")
+    <img src="{{asset('Imagenes/Mobiliario/'.$mobiliario->imagen)}}" height="100px" width="100px" class="img-thumbnail">
+    @endif
      </div>
    </div></br>
      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"></br>
        <div class="form-group">
             	<button class="btn btn-primary" type="submit">Guardar</button>
-            <a href="{{url('Mobiliarios')}}"><button class="btn btn-danger" type="button">Cancelar</button></a>
+            <a href="{{URL('Mobiliarios')}}"><button class="btn btn-danger" type="button">Cancelar</button></a>
             </div>
 </div>
 </div>

@@ -19,7 +19,7 @@ class MobiUserController extends Controller
         $mobi = DB::table('mobiliario as m')
             ->join('departamento as de', 'm.Departamento_idDepartamento', '=', 'de.idDepartamento')
             ->join('categorias as c', 'm.categoria_idcategoria', '=', 'c.idcategoria')
-            ->select(['m.nombre_Mobi', 'm.idMobiliario', 'm.marca_Mobi', 'm.serie_Mobi', 'm.cantidad_Mobi', 'm.fecaRe_Mobi',
+            ->select(['m.nombre_Mobi', 'm.idMobiliario', 'm.marca_Mobi', 'm.serie_Mobi', 'm.fecaRe_Mobi',
                 'm.comentario', 'de.idDepartamento', 'de.nombre_depar', 'c.idcategoria', 'c.nombre_cate', 'm.estado', 'm.imagen'
             ]);
         if (request()->ajax()) {

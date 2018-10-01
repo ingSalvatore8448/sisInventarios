@@ -4,9 +4,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-            <h3>Registro Mobiliarios Docente<a href="MobiResponsable/create" ><button class="btn btn-success">Nuevo</button></a></h3>
-            @include('Mobiliarios.searchMobi')
-
+            <h3>Listado de Mobiliarios</h3>
+            @include('Mobiliarios.searcRes')
         </div>
     </div>
 
@@ -19,7 +18,6 @@
                     <th>Nombre</th>
                     <th>Marca</th>
                     <th>Serie</th>
-                    <th>Cantidad</th>
                     <th>Fecha</th>
                     <th>Comentario</th>
                     <th>Departamento</th>
@@ -35,7 +33,6 @@
                             <td>{{ $mobi->nombre_Mobi}}</td>
                             <td>{{ $mobi->marca_Mobi}}</td>
                             <td>{{ $mobi->serie_Mobi}}</td>
-                            <td>{{ $mobi->cantidad_Mobi}}</td>
                             <td>{{ $mobi->fecaRe_Mobi}}</td>
                             <td>{{ $mobi->comentario}}</td>
                             <td>{{ $mobi->nombre_depar}}</td>
@@ -46,19 +43,18 @@
                             <td>{{ $mobi->estado}}</td>
 
                             <td>
-                                <a href="{{URL::action('MobiController@edit', $mobi->idMobiliario)}}"><button  class="btn btn-info" style="font-size: 10px">Editar</button></a>
 
-                                <a href="" data-target="#modal-delete-{{$mobi->idMobiliario}}" data-toggle="modal"><button style="font-size: 10px" class="btn btn-danger">Eliminar</button></a>
+                                <a href="{{URL::action('MobiliarioController@editar', $mobi->idMobiliario)}}"><button  class="btn btn-info" ><i class="fa fa-edit" title="Editar" aria-hidden="true"></i></button></a>
 
-                                <a href="" data-target="#modal-delete-{{$mobi->idMobiliario}}" data-toggle="modal"><button style="font-size: 10px" class="btn btn-primary">show</button></a>
+                                <a data-target="#modal-delete-{{$mobi->idMobiliario}}" data-toggle="modal"><button  class="btn btn-danger">
+                                        <i class="fa fa-trash" title="Eliminar"  aria-hidden="true"></i></button></a>
 
-
+                                <a data-target="#modal-estado-{{$mobi->idMobiliario}}" data-toggle="modal"><button  class="btn btn-primary">
+                                        <i class="fa fa-trash" title="Canbiar estado" aria-hidden="true"></i></button></a>
                             </td>
-
-
                         </tr>
-
-                        @include('Mobiliarios.deletem')
+                        @include('Mobiliarios.estado')
+                        @include('Mobiliarios.deleteRes')
                     @endforeach
 
                 </table>
@@ -69,6 +65,14 @@
         </div>
     </div>
 
+
 @endsection
 
+@section('footer_scripts')
 
+    <script type="text/javascript">
+
+
+
+    </script>
+@endsection

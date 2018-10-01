@@ -4,7 +4,7 @@ namespace Inventario\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Mobiliariorequest extends FormRequest
+class MobiRes extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -12,8 +12,7 @@ class Mobiliariorequest extends FormRequest
      * @return bool
      */
     public function authorize()
-    {
-        return true;
+    {       return true;
     }
 
     /**
@@ -24,17 +23,14 @@ class Mobiliariorequest extends FormRequest
     public function rules()
     {
         return [
-            
-           'nombre'=>'required | max:50 ',
-           'marca'=>'required | max:50',
-           'serie'=>'required | max:50',
-           'estado'=>'required | max:50',
-             'fecha'=>'required | max:50',
+            'nombre'=>'required | max:50 ',
+            'marca'=>'required | max:50',
+            'serie'=>'required | max:50',
+            'fecha'=>'required | max:50',
             'comentario'=>'required | max:50',
             'nombre_cate'=>'required ',
             'nombre_depar'=>'required ',
-             'imagen'=>'mimes:jpeg,bmp,PNG '
-
+            'imagen'=>'mimes:jpeg,bmp,PNG '
         ];
     }
 }

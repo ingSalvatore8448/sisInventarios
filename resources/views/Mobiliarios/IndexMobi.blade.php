@@ -18,7 +18,6 @@
 				    <th>Nombre</th>
 					<th>Marca</th>
 					<th>Serie</th>
-					<th>Cantidad</th>
 					<th>Fecha</th>
 					<th>Comentario</th>
 					<th>Departamento</th>
@@ -34,7 +33,6 @@
 					<td>{{ $mobi->nombre_Mobi}}</td>
 					<td>{{ $mobi->marca_Mobi}}</td>
 				    <td>{{ $mobi->serie_Mobi}}</td>
-					<td>{{ $mobi->cantidad_Mobi}}</td>
 					<td>{{ $mobi->fecaRe_Mobi}}</td>
 					<td>{{ $mobi->comentario}}</td>
 					<td>{{ $mobi->nombre_depar}}</td>
@@ -46,17 +44,17 @@
 			
 					<td>
 
-						<a href="{{URL::action('MobiliarioController@edit', $mobi->idMobiliario)}}"><button  class="btn btn-info" ><i class="fa fa-edit" aria-hidden="true"></i></button></a>
+						<a href="{{URL::action('MobiliarioController@edit', $mobi->idMobiliario)}}"><button  class="btn btn-info" ><i class="fa fa-edit" title="Editar" aria-hidden="true"></i></button></a>
 
 						<a data-target="#modal-delete-{{$mobi->idMobiliario}}" data-toggle="modal"><button  class="btn btn-danger">
-								 <i class="fa fa-trash" aria-hidden="true"></i></button></a>
+								 <i class="fa fa-trash" title="Eliminar"  aria-hidden="true"></i></button></a>
 
 						<a data-target="#modal-estado-{{$mobi->idMobiliario}}" data-toggle="modal"><button  class="btn btn-primary">
-								<i class="fa fa-trash" aria-hidden="true"></i></button></a>
+								<i class="fa fa-trash" title="Canbiar estado" aria-hidden="true"></i></button></a>
 					</td>
 				</tr>
 				    @include('Mobiliarios.estado')
-			    	@include('MobiResponsable.deletem')
+			    	@include('Mobiliarios.delete')
 				@endforeach
 
 			</table>

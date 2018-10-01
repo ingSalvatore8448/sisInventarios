@@ -14,7 +14,6 @@ class Mobiliarios extends Model
         'nombre_Mobi',
         'marca_Mobi',
         'serie_Mobi',
-        'cantidad_Mobi',
         'estado',
         'fecaRe_Mobi',
         'comentario',

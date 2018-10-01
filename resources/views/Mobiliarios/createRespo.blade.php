@@ -15,10 +15,7 @@
 			@endif
 </div>
 </div>
-
-
-
-  {!! Form::open(array('url'=>'Mobiliarios','method'=>'POST','autocomplete'=>'off','files'=>true)) !!}
+  {!! Form::open(array('route'=>'registrar','method'=>'POST','autocomplete'=>'off','files'=>true)) !!}
  {{Form::token()}}
 
  <div class="row">

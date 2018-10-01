@@ -3,7 +3,7 @@
 
 <div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-  <h1>Editar Mobiliario</h1>{{$mobiliario->idMobiliario}}
+  <h1>Editar Mobiliario</h1>
 @if (count($errors)>0)
 			<div class="alert alert-danger">
 				<ul>
@@ -15,17 +15,9 @@
 			@endif
 </div>
 </div>
-
-
-
-  
 {!!Form::model($mobiliario,['method'=>'PATCH','route'=>['Mobiliarios.update',$mobiliario->idMobiliario],'files'=>'true'])!!}
-
-
  {{Form::token()}}
-
- <div class="row">
-   
+ <div class="row"> 
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Mobiliario</label>
@@ -78,14 +70,13 @@
     </select>
      </div>
  </div>
-  <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-<div class="form-group">
-    <label for="exampleInputEmail1">Cantidad</label>
-  <input type="number" class="form-control" id="cantidad" required="Campo Obligatorio" name="cantidad" value="{{$mobiliario->cantidad_Mobi}}">
+     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+         <div class="form-group">
+             <label for="exampleInputEmail1">Estado</label>
+             <input type="text" class="form-control" id="comentario" disabled   value="{{$mobiliario->estado}}">
+         </div>
      </div>
-   
- </div>
-  <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
        <label for="exampleInputEmail1">Fecha</label>
 <div class="input-group date"  data-provide="datepicker">
     <input type="text" name="fecha" value="{{$mobiliario->fecaRe_Mobi}}" id="date" class="form-control">

@@ -410,8 +410,8 @@
 
             <li><a href="{{URL('Mobiliarios/create')}}"><i class="fa fa-circle-o"></i>Registrar Administrador</a></li>
             <li><a href="{{URL('Mobiliarios')}}"><i class="fa fa-circle-o"></i>LISTAR  Administrador</a></li>
-            <li><a href="{{URL('MobiResponsable/create')}}"><i class="fa fa-circle-o"></i>Registrar  Responsable</a></li>
-            <li><a href="{{URL('MobiResponsable')}}"><i class="fa fa-circle-o"></i>Listar  Responsable</a></li>
+            <li><a href="{{URL('Mob/mobicre')}}"><i class="fa fa-circle-o"></i>Registrar  Responsable</a></li>
+            <li><a href="{{URl('mob/lisMobi')}}"><i class="fa fa-circle-o"></i>Listar  Responsable</a></li>
             <li><a href="{{URL('Mobiliari')}}"><i class="fa fa-circle-o"></i>Detalle Mobiliarios</a></li>
 
           </ul>

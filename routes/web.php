@@ -38,14 +38,21 @@ Route::group(['middleware' => ['auth','is_admn']], function () {
     Route::resource('Roles','RolController');
     Route::get('Departamentos','DepartamentosController@mostrar')->name('showdepar');
     Route::resource('Departamen','DepartamentosController');
-    Route::resource('MobiResponsable','MobiController');
+
 
 
 
 });
 
 Route::group(['middleware' => 'is_resonsable'],function (){
-    Route::resource('MobiResponsable','MobiController');
+
+
+    Route::post('Mob/mobicre','MobiliarioController@registrar')->name('registrar');
+    Route::get('Mob/mobicre','MobiliarioController@CrearMobi');
+    Route::get('mob/lisMobi','MobiliarioController@listar')->name('buscar');
+    Route::delete('Mob/{idMobiliario}','MobiliarioController@eliminar');
+    Route::get('Mobili/{idMobiliario}','MobiliarioController@editar');
+    Route::PATCH('Mob/updateRes/{idMobiliario}','MobiliarioController@updateMobi')->name('update');
 
     /*   Route::resource('MobiResponsable','MobiUserController');
     */
