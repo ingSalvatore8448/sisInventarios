@@ -1,5 +1,93 @@
 @extends('Layaouts.admin')
 @section('contenido')
+    <style type="text/css">
+        body {
+            font-family: 'Varela Round', sans-serif;
+        }
+        .modal-confirm {
+            color: #636363;
+            width: 400px;
+        }
+        .modal-confirm .modal-content {
+            padding: 20px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+            font-size: 14px;
+        }
+        .modal-confirm .modal-header {
+            border-bottom: none;
+            position: relative;
+        }
+        .modal-confirm h4 {
+            text-align: center;
+            font-size: 26px;
+            margin: 30px 0 -10px;
+        }
+        .modal-confirm .close {
+            position: absolute;
+            top: -5px;
+            right: -2px;
+        }
+        .modal-confirm .modal-body {
+            color: #999;
+        }
+        .modal-confirm .modal-footer {
+            border: none;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 13px;
+            padding: 10px 15px 25px;
+        }
+        .modal-confirm .modal-footer a {
+            color: #999;
+        }
+        .modal-confirm .icon-box {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            border-radius: 50%;
+            z-index: 9;
+            text-align: center;
+            border: 3px solid #f15e5e;
+        }
+        .modal-confirm .icon-box i {
+            color: #f15e5e;
+            font-size: 46px;
+            display: inline-block;
+            margin-top: 13px;
+        }
+        .modal-confirm .btn {
+            color: #fff;
+            border-radius: 4px;
+            background: #60c7c1;
+            text-decoration: none;
+            transition: all 0.4s;
+            line-height: normal;
+            min-width: 120px;
+            border: none;
+            min-height: 40px;
+            border-radius: 3px;
+            margin: 0 5px;
+            outline: none !important;
+        }
+        .modal-confirm .btn-info {
+            background: #c1c1c1;
+        }
+        .modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+            background: #a8a8a8;
+        }
+        .modal-confirm .btn-danger {
+            background: #f15e5e;
+        }
+        .modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+            background: #ee3535;
+        }
+        .trigger-btn {
+            display: inline-block;
+            margin: 100px auto;
+        }
+    </style>
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
     <div class="container-fluid">
@@ -10,6 +98,7 @@
                 <tr>
 
                     <th>NOMBRE CATEGORIA</th>
+                    <th>Estado</th>
                     <th>Operaciones</th>
                 </tr>
                 </thead>
@@ -70,6 +159,13 @@
                             <input type="text" class="form-control" id="nombre" name="nombre">
                             <p class="edit_errorName text-danger hidden"></p>
                         </div>
+                        <div class="form-group">
+                            <label for="nombre_Cate" class="control-label">
+                                Estado Categoria<span class="required">*</span>
+                            </label>
+                            <input type="text" disabled class="form-control" id="estado" name="nombre">
+                            <p class="edit_errorName text-danger hidden"></p>
+                        </div>
                     </form>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -79,6 +175,29 @@
             </div>
         </div>
     </div>
+
+    <div id="deletD" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="fa fa-trash"></i>
+                    </div>
+                    <h4 class="modal-title">Estas seguro?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Realmente quieres borrar estos registro? Este proceso no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cancel"  class="btn btn-info" data-dismiss="modal">Cancel</button>
+                    <button type="submit"  id="delete"   class="btn btn-danger" >Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @section('footer_scripts')
     <script type="text/javascript" charset="utf-8" async defer>
@@ -121,6 +240,7 @@
                 ajax: '{!! route('Categorias.index') !!}',
                 columns: [
                     { data: 'nombre_cate', name: 'nombre_cate' },
+                    { data: 'estado', name: 'estado' },
                     { "data": "action", orderable:false, searchable: false}
 
                 ]
@@ -183,6 +303,7 @@ $('#ADCate').click(function () {
                     $('#cate_id').val(data.idcategoria);
                     $('#nombre').val(data.nombre_cate);
                     $('.edit_errorName').addClass('hidden');
+                    $('#estado').val(data.estado);
                     $('#mdlEditData').modal('show');
 
                 }
@@ -226,6 +347,34 @@ $('#ADCate').click(function () {
                  }
              });
          });
+        function eliminar(idcategoria) {
+            if(idcategoria){
+                $('#delete').click(function () {
 
+                    $.ajax({
+                        url:'delete/'+idcategoria,
+                        dataType:'json',
+                        type:'post',
+                        success:function (response) {
+                            swal({
+                                position: 'center',
+                                type: 'success',
+                                title: 'Eliminado Correctamente',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            $('#deletD').modal('hide');
+                        }
+
+
+                    });
+                    setTimeout(window.location.reload.bind(window.location), 4000);
+
+
+
+
+                });
+            }
+        }
     </script>
     @endsection

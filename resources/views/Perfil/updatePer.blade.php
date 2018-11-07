@@ -93,15 +93,6 @@
                             </select>
                         </div>
                     </div>
-                    <div style="padding-bottom: 50px"  class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Imagen</label>
-                            <input type="file" class="form-control" id="imagen" name="imagen">
-                            @if(($persona1->imagen)!="")
-                                <img src="{{asset('Imagenes/Mobiliario/'.$persona1->imagen)}}" height="100px" width="100px" class="img-thumbnail">
-                            @endif
-                        </div>
-                    </div>
                 </div>
 
                 <div class="modal-footer">

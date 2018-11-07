@@ -9,8 +9,11 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" type="text/css" href="{{asset('sweetalert/sweetalert2.min.css')}}">
+
+
   <!-- datatables cdn-->
-  <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
@@ -379,8 +382,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('Categorias')}}"><i class="fa fa-circle-o"></i>REGISTRAR CATEGORIAS</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+            <li><a href="{{url('Categorias')}}"><i class="fa fa-circle-o"></i>Listado de Categorias</a></li>
+
           </ul>
         </li>
         <li class="treeview">
@@ -396,8 +399,27 @@
             <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i>Lista Roles</a></li>
           </ul>
         </li>
-        @endif
-        <li class="treeview">
+       <li class="treeview">
+          <a href="#">
+
+            <i class="fa fa-gear" style="color: white" aria-hidden="true"></i>
+            </i> <span>Mobiliarios Administrador</span>
+            <span class="pull-right-container">
+              <i class=" fa fa-angle-left pull-right" ></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+
+            <li><a href="{{URL('partMobi/mobi')}}"><i class="fa fa-circle-o"></i>Registro Partes Mobiliario</a></li>
+            <li><a href="{{URL('Mobiliarios')}}"><i class="fa fa-circle-o"></i>LISTAR  Mobiliario</a></li>
+               <li><a href="{{URL('Mob/mobicre')}}"><i class="fa fa-circle-o"></i>Registrar solo  Mobiliario</a></li>
+          
+
+          </ul>
+        </li>
+         @endif
+
+         <li class="treeview">
           <a href="#">
 
             <i class="fa fa-gear" style="color: white" aria-hidden="true"></i>
@@ -408,14 +430,13 @@
           </a>
           <ul class="treeview-menu">
 
-            <li><a href="{{URL('Mobiliarios/create')}}"><i class="fa fa-circle-o"></i>Registrar Administrador</a></li>
-            <li><a href="{{URL('Mobiliarios')}}"><i class="fa fa-circle-o"></i>LISTAR  Administrador</a></li>
-            <li><a href="{{URL('Mob/mobicre')}}"><i class="fa fa-circle-o"></i>Registrar  Responsable</a></li>
-            <li><a href="{{URl('mob/lisMobi')}}"><i class="fa fa-circle-o"></i>Listar  Responsable</a></li>
-            <li><a href="{{URL('Mobiliari')}}"><i class="fa fa-circle-o"></i>Detalle Mobiliarios</a></li>
+            <li><a href="{{URL('Mob/mobicre')}}"><i class="fa fa-circle-o"></i>Registrar  Mobiliario</a></li>
+            <li><a href="{{URl('MobiResponsable')}}"><i class="fa fa-circle-o"></i>Listar  Responsable</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i>Detalle Mobiliarios</a></li>
 
           </ul>
-        </li>
+        </li>  
+
         <li class="treeview">
           <a href="#">
 
@@ -441,15 +462,6 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Inventario
-
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Inventario</li>
-      </ol>
-
     </section>
 
     <!-- Main content -->
@@ -463,14 +475,15 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <center>
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    <strong>UPEU &copy; 2014-2016 <a href="https://adminlte.io">AL`HA TEEM</a>.</strong> All rights
     reserved.
   </footer>
-
+  </center>
   <!-- Control Sidebar -->
 
   <!-- Add the sidebar's background. This div must be placed
@@ -519,7 +532,21 @@
 <!-- AdminLTE for demo purposes -->
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="{{asset('sweetalert/sweetalert2.min.js')}}" type="text/javascript" charset="utf-8" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
 
 @yield('footer_scripts')
+
+<script src="{{asset('pages/js/jquery.bootstrap.wizard.js')}}" type="text/javascript"></script>
+
+<!--  Plugin for the Wizard -->
+<script src="{{asset('pages/js/gsdk-bootstrap-wizard.js')}}"></script>
+
+<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+<script src="{{asset('pages/js/jquery.validate.min.js')}}"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@ class Persona extends Model
         'Fecha_cumple',
         'Rol_idRol',
         'Departamento_idDepartamento',
-         'imagen',
+
    
 
 

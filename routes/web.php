@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('layaouts.prinsipal');
 });
 
 
@@ -24,6 +24,7 @@ Route::get('/admin','HomeController@admin');
 Route::group(['middleware' => ['auth','is_admn']], function () {
     //
     Route::resource('Categorias','CategoriaController');
+    Route::post('delete/{idcategoria}','CategoriaController@eliminar');
 
     Route::resource('Usuario','UsuarioController');
 
@@ -38,6 +39,10 @@ Route::group(['middleware' => ['auth','is_admn']], function () {
     Route::resource('Roles','RolController');
     Route::get('Departamentos','DepartamentosController@mostrar')->name('showdepar');
     Route::resource('Departamen','DepartamentosController');
+    Route::post('delete/{idDepartamento}','DepartamentosController@eliminar');
+    Route::resource('MobiResponsable','MobiController');
+
+
 
 
 
@@ -47,15 +52,10 @@ Route::group(['middleware' => ['auth','is_admn']], function () {
 Route::group(['middleware' => 'is_resonsable'],function (){
 
 
-    Route::post('Mob/mobicre','MobiliarioController@registrar')->name('registrar');
-    Route::get('Mob/mobicre','MobiliarioController@CrearMobi');
-    Route::get('mob/lisMobi','MobiliarioController@listar')->name('buscar');
-    Route::delete('Mob/{idMobiliario}','MobiliarioController@eliminar');
-    Route::get('Mobili/{idMobiliario}','MobiliarioController@editar');
-    Route::PATCH('Mob/updateRes/{idMobiliario}','MobiliarioController@updateMobi')->name('update');
 
-    /*   Route::resource('MobiResponsable','MobiUserController');
-    */
+   
+
+
 
    });
 
@@ -64,6 +64,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('Perfil','PerfController');
 Route::PATCH('estado/{idMobiliario}','MobiliarioController@canbiarestado');
 Route::resource('Tablero','HomController');
-Route::get('Mobiliari','MobiliarioController@detalle');
-Route::post('user/Password','PerfController@canbiarpass');
+Route::Post('user/Password','PerfController@canbiarpass');
+Route::get('partMobi/mobi','MobiliarioController@getpartes');
+Route::post('PartCreate/Mobi','MobiliarioController@crearpartesmobi');
+Route::post('Mob/mobicre','MobiliarioController@registrar')->name('registrar');
+Route::get('Mob/mobicre','MobiliarioController@CrearMobi');
+Route::get('mob/lisMobi','MobiliarioController@listar')->name('buscar');
+  Route::resource('MobiResponsable','MobiUserController');
+Route::get('editar{idMobiliario}','MobiUserController@cargardatos');
+Route::get('login','MensajeController@login');
 Auth::routes();

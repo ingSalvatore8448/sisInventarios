@@ -29,32 +29,32 @@
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Apellido Paterno</label>
-    <input type="text" class="form-control" id="apellido_pa" required="Campo Obligatorio" value="{{old("nombre")}}" name="apellido_pa"  placeholder="Apellido Paterno">
+    <input type="text" class="form-control" id="apellido_pa" required="Campo Obligatorio" value="{{old("apellido_pa")}}" name="apellido_pa"  placeholder="Apellido Paterno">
      </div>
    </div>
     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Apellido Materno</label>
-    <input type="text" class="form-control" id="apellido_ma" required="Campo Obligatorio" value="{{old("nombre")}}" name="apellido_ma"  placeholder="Apellido Materno">
+    <input type="text" class="form-control" id="apellido_ma" required="Campo Obligatorio" value="{{old("apellido_ma")}}" name="apellido_ma"  placeholder="Apellido Materno">
      </div>
    </div>
 
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Telefono</label>
-    <input type="text" maxlength="5"  class="form-control"  id="telefono" size="9" required="Campo Obligatorio" value="{{old("nombre")}}" name="telefono"  placeholder="Telefono">
+    <input type="text" maxlength="5"  class="form-control"  id="telefono" size="9" required="Campo Obligatorio" value="{{old("telefono")}}" name="telefono"  placeholder="Telefono">
      </div>
    </div>
       <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">N°DNI</label>
-    <input type="number"  class="form-control"  id="dni" required="Campo Obligatorio" value="{{old("nombre")}}" name="dni"  placeholder="DNI">
+    <input type="number"  class="form-control"  id="dni" required="Campo Obligatorio" value="{{old("dni")}}" name="dni"  placeholder="DNI">
      </div>
    </div>
      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Usuario</label>
-    <input type="text" class="form-control" id="username" required="Campo Obligatorio" value="{{old("nombre")}}" name="username"  placeholder="Correo">
+    <input type="text" class="form-control" id="username" required="Campo Obligatorio" value="{{old("username")}}" name="username"  placeholder="Correo">
      </div>
    </div>
 
@@ -62,9 +62,9 @@
    <div class="form-group">
     <label for="exampleInputEmail1">Departamento</label>
     <select name="departamento" class="form-control">
-       <option value="selecione categoria"></option>
+       <option value="">Seleccione departamento</option>
       @foreach($departamento as $depa)
-      <option value="{{ $depa->idDepartamento}}">{{$depa->nombre_depar}}</option>
+      <option value="{{$depa->idDepartamento}}">{{$depa->nombre_depar}}</option>
       @endforeach
     </select>
      </div>
@@ -73,7 +73,7 @@
    <div class="form-group">
     <label for="exampleInputEmail1">Sexo</label>
     <select name="sexo" class="form-control">
-       <option value="selecione categoria"></option>
+       <option value="">Seleccione tu sexo</option>
 
       <option value="Masculino">Masculino</option>
         <option value="Femenino">Feminino</option>
@@ -83,7 +83,7 @@
 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
        <label for="exampleInputEmail1">Fecha Cumpleaños</label>
 <div class="input-group date"  data-provide="datepicker">
-    <input type="text" name="Fecha_cumple" placeholder="Fecha Cumpleaños" id="date" class="form-control">
+    <input type="text" value="{{old("Fecha_cumple")}}" name="Fecha_cumple" placeholder="Fecha Cumpleaños" id="date" class="form-control">
     <div class="input-group-addon">
         <span class="glyphicon glyphicon-th"></span>
     </div>
@@ -95,6 +95,7 @@
 <div class="form-group">
     <label for="exampleInputEmail1">Rol</label>
     <select name="rol" class="form-control" onreset="" >
+        <option value="">Seleccione tu Rol</option>
         @foreach($rol as $ro)
         <option value="{{$ro->idRol}}">{{$ro->nombre_rol}}</option>
       @endforeach
@@ -104,13 +105,13 @@
   <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Correo</label>
-    <input type="text" class="form-control" id="email" required="Campo Obligatorio" value="{{old("nombre")}}" name="email"  placeholder="Usuario">
+    <input type="text" class="form-control" id="email" required="Campo Obligatorio" value="{{old("email")}}" name="email"  placeholder="email">
      </div>
    </div>
     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Password</label>
-    <input type="password" class="form-control" id="usuarios" required="Campo Obligatorio" value="{{old("nombre")}}" name="password"  placeholder="password">
+    <input type="password" class="form-control" id="password" required="Campo Obligatorio" value="{{old("password")}}" name="password"  placeholder="password">
      </div>
    </div>
    <div  class="col-lg-6 col-sm-6 col-md-6 col-xs-12">

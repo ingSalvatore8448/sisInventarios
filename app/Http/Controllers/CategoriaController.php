@@ -24,8 +24,8 @@ class CategoriaController extends Controller
             return Datatables::of(Categoria::query())
                 ->addColumn('action',function($cate){
                     return
-                        '<button type="button" class="btn btn-info btn-sm btnEdit" data-edit="/Categorias/'.$cate->idcategoria.'/edit">Edit</button>
-                <button type="button" class="btn btn-xs btn-primary edit" id="'.$cate->idDepartamento.'"><i class="glyphicon glyphicon-edit">Ver</button>';
+                        '<button type="button" class="btn btn-info btn-sm btnEdit" data-edit="/Categorias/'.$cate->idcategoria.'/edit">Actualizar</button>
+                 <a data-toggle="modal" data-target="#deletD" onclick="eliminar('.$cate->idcategoria.')"> <button type="button" class="btn btn-xs btn-danger" id=""><i class="glyphicon glyphicon-remove">Eliminar</button></a>';
 
                 })
             ->make(true);
@@ -89,13 +89,13 @@ class CategoriaController extends Controller
     public function delete(){
 
     }
-    public function destroy($id){
-        $categoria=Categoria::findOrFail($id);
-      
-        $categoria->delete();
-        return Redirect::to('Categorias');
+    public function eliminar($id){
+        $depar=Categoria::find($id);
+        $depar->delete();
+        echo json_encode($depar);
     }
-       
+
+
 
 
 

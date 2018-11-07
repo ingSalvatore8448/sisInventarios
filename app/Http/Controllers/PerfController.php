@@ -24,7 +24,7 @@ class PerfController extends Controller
             ->join('users as u','p.idPersona','u.Persona_idPersona')
             ->join('rol as r','p.Rol_idRol','=','r.idRol')
             ->join('departamento as de','p.Departamento_idDepartamento','=','de.idDepartamento')
-            ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'u.username', 'p.sexo', 'p.Fecha_cumple', 'p.imagen', 'u.email', 'r.nombre_rol', 'de.nombre_depar', 'u.Persona_idPersona','u.id','u.idRol')
+            ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'u.username', 'p.sexo', 'p.Fecha_cumple', 'u.imagen', 'u.email', 'r.nombre_rol', 'de.nombre_depar', 'u.Persona_idPersona','u.id','u.idRol')
             ->where('p.idPersona', '=', $id_tra)
             ->first();
         $rol=DB::table('rol')->get();
@@ -89,6 +89,11 @@ class PerfController extends Controller
             $usuarios=User::findOrFail($id);
             $usuarios->email= $request->get('email');
             $usuarios->username=$request->get('username');
+            if (Input::hasFile('imagen')) {
+                $file = Input::file('imagen');
+                $file->move(public_path() . '/Imagenes/Usuarios/', $file->getClientOriginalName());
+                $usuarios->imagen = $file->getClientOriginalName();
+            }
             $usuarios->update();
             return Redirect::to('Perfil');
         }

@@ -48,9 +48,6 @@
 
 						<a data-target="#modal-delete-{{$mobi->idMobiliario}}" data-toggle="modal"><button  class="btn btn-danger">
 								 <i class="fa fa-trash" title="Eliminar"  aria-hidden="true"></i></button></a>
-
-						<a data-target="#modal-estado-{{$mobi->idMobiliario}}" data-toggle="modal"><button  class="btn btn-primary">
-								<i class="fa fa-trash" title="Canbiar estado" aria-hidden="true"></i></button></a>
 					</td>
 				</tr>
 				    @include('Mobiliarios.estado')

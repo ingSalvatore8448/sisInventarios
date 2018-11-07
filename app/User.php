@@ -5,10 +5,14 @@ namespace Inventario;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
-       protected $table='users';
+    use Notifiable;
+
+    protected $table='users';
    protected $primaryKey='id';
+
 
  public $timestamps=false;
     /**
@@ -18,7 +22,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'email', 'password','Persona_idPersona' ,'created_at','idRol',
-        'updated_at','remember_token',
+        'updated_at','remember_token','username','imagen'
     ];
 
     /**

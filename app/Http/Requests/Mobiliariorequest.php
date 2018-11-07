@@ -28,12 +28,11 @@ class Mobiliariorequest extends FormRequest
            'nombre'=>'required | max:50 ',
            'marca'=>'required | max:50',
            'serie'=>'required | max:50',
-           'estado'=>'required | max:50',
-             'fecha'=>'required | max:50',
+            'fecha'=>'required | max:50',
             'comentario'=>'required | max:50',
             'nombre_cate'=>'required ',
             'nombre_depar'=>'required ',
-             'imagen'=>'mimes:jpeg,bmp,PNG '
+             'imagen'=>'mimes:jpeg,bmp,png'
 
         ];
     }

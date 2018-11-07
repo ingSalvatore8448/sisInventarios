@@ -18,12 +18,13 @@ class DepartamentosController extends Controller
     {
 
 
+
        if (request()->ajax()) {
             return Datatables::of(Departamentos::query())
             ->addColumn('action',function($departa){
                 return 
-                '<button type="button" class="btn btn-info btn-sm btnEdit" data-edit="/Departamen/'.$departa->idDepartamento.'/edit">Edit</button>
-                <button type="button" class="btn btn-xs btn-primary edit" id="'.$departa->idDepartamento.'"><i class="glyphicon glyphicon-edit">Ver</button>';
+                '<button type="button" class="btn btn-info btn-sm btnEdit" data-edit="/Departamen/'.$departa->idDepartamento.'/edit">Editar</button>
+               <a data-toggle="modal" data-target="#deletD" onclick="eliminar('.$departa->idDepartamento.')"> <button type="button" class="btn btn-xs btn-danger" id=""><i class="glyphicon glyphicon-remove">Eliminar</button></a>';
 
             })
             ->make(true);
@@ -115,7 +116,11 @@ class DepartamentosController extends Controller
     }
 
 
-
+public function eliminar($id){
+        $depar=Departamentos::find($id);
+        $depar->delete();
+        echo json_encode($depar);
+}
 
 
 

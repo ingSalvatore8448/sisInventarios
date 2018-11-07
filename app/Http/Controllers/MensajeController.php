@@ -11,4 +11,7 @@ class MensajeController extends Controller
 
         return view('Return.direcciones');
     }
+    public function login(){
+        return view('auth.login');
+    }
 }
