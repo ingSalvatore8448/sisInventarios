@@ -29,29 +29,32 @@ class MobiliarioController extends Controller
 
     public function index(Request $request)
     {
-        if ($request) {
+        $mobi=DB::select("
+        SELECT m.idMobiliario, m.nombre_Mobi,m.marca_Mobi,m.serie_Mobi,m.estado,m.fecaRe_Mobi,m.comentario,m.Departamento_idDepartamento,m.categoria_idcategoria,m.imagen , d.nombre_depar,c.nombre_cate 
+        FROM mobiliario as m , departamento as d , categorias as c WHERE m.Departamento_idDepartamento=d.idDepartamento
+         and m.categoria_idcategoria=c.idcategoria
+        ");
+        if ($request->ajax()){
+            return Datatables::of($mobi)
+                ->addColumn('action', function ($id){
+                    return '<a data-toggle="modal" data-target="#formEdir"  onclick="editarPro('. $id->idproducto . ')" >
+<button type="button" class="btn btn-outline-success btn-social-icon-text"><i class="fas fa-pencil-alt btn-icon-append"></i></button></a>
+                       <a data-toggle="modal" data-target="#deletPro"   onclick="eliminarPro('. $id->idproducto . ')" >
+                        <button type="button" class="btn btn-outline-success ">
+                          <i class="fas fa-trash text-danger"></i>                          
+                        </button>
+</a>';
+                })->addColumn('imagen', function ($mobi){
+                    $url= asset('Imagenes/Mobiliario/'.$mobi->imagen);
+                    return '<img src="'.$url.'"  height="60px" width="60px"/>';
 
-            $query = trim($request->get('searchText'));
-            $mobiliarios = DB::table('mobiliario as m')
-                ->join('departamento as de', 'm.Departamento_idDepartamento', '=', 'de.idDepartamento')
-                ->join('categorias as ca', 'm.categoria_idcategoria', '=', 'ca.idcategoria')
-                ->select('m.nombre_Mobi', 'm.idMobiliario', 'm.marca_Mobi', 'm.serie_Mobi', 'm.estado', 'm.fecaRe_Mobi', 'm.comentario', 'de.idDepartamento', 'de.nombre_depar', 'ca.idcategoria', 'ca.nombre_cate', 'm.imagen')
-                ->where('nombre_Mobi', 'like', '%' . $query . '%')
-                ->orwhere('m.marca_Mobi', 'LIKE', '%' . $query . '%')
-                ->orderBy('m.nombre_Mobi', 'desc')
-                ->paginate(7);
 
-            return view('Mobiliarios.indexMobi', ['mobiliarios' => $mobiliarios, 'searchText' => $query]);
-
-
+                })->rawColumns(['imagen', 'action'])->make(true);
         }
 
+        return view('Mobiliarios.listaMobi');
     }
 
-    public function show()
-    {
-
-    }
 
     public function edit($id)
     {

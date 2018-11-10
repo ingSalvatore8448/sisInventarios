@@ -16,9 +16,6 @@ class DepartamentosController extends Controller
 
     public function index()
     {
-
-
-
        if (request()->ajax()) {
             return Datatables::of(Departamentos::query())
             ->addColumn('action',function($departa){
@@ -39,8 +36,8 @@ class DepartamentosController extends Controller
    public function store(Request $request)
     {
         $rules = [
-            'name' => 'required|min:2|max:32',
-
+            'nombre_Depar' => 'required|min:2|max:32',
+            'estado' => 'required|min:2|max:32',
         ];
 
         $validator = Validator::make(Input::all(),$rules);
@@ -51,7 +48,9 @@ class DepartamentosController extends Controller
         }else{
 
             $crud = new Departamentos();
-            $crud->nombre_depar = $request->name;
+            $crud->nombre_depar = $request->get('nombre_Depar');
+            $crud->	depa_estado=$request->get('estado');
+
             $crud->save();
 
             return response()->json(array("success"=>true));
@@ -109,7 +108,7 @@ class DepartamentosController extends Controller
         }else{
             $crud =Departamentos::find($id);
             $crud->nombre_depar = $request->edit_name;
-            $crud->save();
+            $crud->update();
 
             return response()->json(array("success"=>true));
         }

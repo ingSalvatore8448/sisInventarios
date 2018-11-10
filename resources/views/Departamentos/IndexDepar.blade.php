@@ -125,8 +125,17 @@
                         <label for="name" class="control-label">
                             nombre departamento<span class="required">*</span>
                         </label>
-                        <input type="text" class="form-control" id="name" name="nombre_depar">
+                        <input type="text" class="form-control" id="name" name="nombre_Depar">
                         <p class="errorName text-danger hidden"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label">
+                            nombre departamento<span class="required">*</span>
+                        </label>
+                        <select type="text"  class="form-control" id="name" name="estado">
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
                     </div>
 
                 </form>
@@ -251,7 +260,7 @@ $(function() {
         columns: [
 
             { data: 'nombre_depar', name: 'nombre_depar' },
-            { data: 'estado', name: 'estado' },
+            { data: 'depa_estado', name: 'depa_estado' },
             { "data": "action", orderable:false, searchable: false}
            
         ]
@@ -271,28 +280,14 @@ $('#add_data').click(function (e) {
             url : 'http://127.0.0.1:8000/Departamen',
             type : 'POST',
             dataType: 'json',
-            data : {
-                'csrf-token': $('input[name=_token]').val(), 
-                 name : $('#name').val(),
-        
-            },
+            data : frm.serialize(),
             success:function(data){
-                $('.errorName').addClass('hidden');
-                if (data.errors) {
-                    if (data.errors.name) {
-                        $('.errorName').removeClass('hidden');
-                        $('.errorName').text(data.errors.name);
-                    }
-            
-                }
-                if (data.success == true) {
-                    $('#mdlAddData').modal('hide');
-                    frm.trigger('reset');
-                     table.ajax.reload(null,false);
-                    swal('success!','Se registro departamento Correctamente','success');
-                    
 
-                }
+                   frm.trigger('reset');
+                   $('#mdlAddData').modal('hide');
+                   swal('Success!','Registro completo','success');
+                   table.ajax.reload(null,false);
+
             }
         });
     });
@@ -311,7 +306,7 @@ $('#add_data').click(function (e) {
                 success:function(data){
                     $('#edit_ID').val(data.idDepartamento);
                     $('#edit_name').val(data.nombre_depar);
-                    $('#estado').val(data.estado);
+                    $('#estado').val(data.depa_estado);
                     $('.edit_errorName').addClass('hidden');
                     $('#mdlEditData').modal('show');
 
@@ -328,8 +323,10 @@ function eliminar(idDepartamento) {
                 $.ajax({
                     url:'delete/'+idDepartamento,
                     dataType:'json',
-                    type:'post',
+                    type:'get',
                     success:function (response) {
+
+                        $('#deletD').modal('hide');
                         swal({
                             position: 'center',
                             type: 'success',
@@ -337,12 +334,14 @@ function eliminar(idDepartamento) {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        $('#deletD').modal('hide');
+                        table.ajax.reload(null,false);
+
+
                     }
 
 
                 });
-                setTimeout(window.location.reload.bind(window.location), 4000);
+
 
 
 
@@ -364,22 +363,14 @@ function eliminar(idDepartamento) {
             data : frm.serialize(),
             success:function(data){
                 // console.log(data);
-                if (data.errors) {
 
-                    if (data.errors.edit_name) {
-                        $('.edit_errorName').removeClass('hidden');
-                        $('.edit_errorName').text(data.errors.edit_name);
-                    }
-
-                }
-                if (data.success == true) {
                     // console.log(data);
-                    $('.edit_errorName').addClass('hidden');
-                    frm.trigger('reset');
-                    $('#mdlEditData').modal('hide');
-                    swal('Success!','Departamaneto actualisado correctamente','success');
-                    table.ajax.reload(null,false);
-                }
+                $('.edit_errorName').addClass('hidden');
+                frm.trigger('reset');
+                $('#mdlEditData').modal('hide');
+                swal('Success!','Categorias actualisado correctamente','success');
+                table.ajax.reload(null,false);
+
             },
             error: function (jqXHR, textStatus, errorThrown)
                 {
@@ -409,7 +400,7 @@ function eliminar(idDepartamento) {
  });
  $('#deletD').on('hidden.bs.modal', function (e) {
      // do something...
-     location.reload();
+
  })
 </script>
 @endsection

@@ -45,7 +45,7 @@
                                         <div class="col-sm-4 col-sm-offset-1">
                                             <div class="picture-container">
                                                 <div class="picture">
-                                                    <img src="{{asset('pages/img/default-avatar.png')}}" class="picture-src" id="wizardPicturePreview" title=""/>
+                                                    <img src="{{asset('Imagen/fondo_par..jpg')}}" class="picture-src" id="wizardPicturePreview" title=""/>
                                                     <input name="imagen"  type="file" id="wizard-picture">
                                                 </div>
                                                 <h6>Imagen</h6>

@@ -265,13 +265,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+              <img src="{{asset('Imagenes/Usuarios/'.Auth::user()->imagen)}}"   class="user-image" alt="User Image">
               <span class="hidden-xs"> {{ Auth::user()->email }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                <img src="{{asset('Imagenes/Usuarios/'.Auth::user()->imagen)}}"   class="img-circle" alt="User Image">
 
                 <p>
                   {{ Auth::user()->email }}
@@ -331,7 +331,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+          <img src="{{asset('Imagenes/Usuarios/'.Auth::user()->imagen)}}"   class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p> {{ Auth::user()->email }}</p>
@@ -411,9 +411,9 @@
           <ul class="treeview-menu">
 
             <li><a href="{{URL('partMobi/mobi')}}"><i class="fa fa-circle-o"></i>Registro Partes Mobiliario</a></li>
-            <li><a href="{{URL('Mobiliarios')}}"><i class="fa fa-circle-o"></i>LISTAR  Mobiliario</a></li>
+            <li><a href="{{URL('mobiliario')}}"><i class="fa fa-circle-o"></i>LISTAR  Mobiliario</a></li>
                <li><a href="{{URL('Mob/mobicre')}}"><i class="fa fa-circle-o"></i>Registrar solo  Mobiliario</a></li>
-          
+
 
           </ul>
         </li>

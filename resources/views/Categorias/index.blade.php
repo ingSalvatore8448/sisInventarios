@@ -129,6 +129,16 @@
                             <input type="text" class="form-control" id="nombre_Cate" name="nombre_Cate">
                             <p class="errorName text-danger hidden"></p>
                         </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label">
+                                Estado Categoria<span class="required">*</span>
+                            </label>
+                            <select type="text" class="form-control" id="estado" name="estado">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+
+                        </div>
 
                     </form>
                     <div class="modal-footer">
@@ -163,7 +173,7 @@
                             <label for="nombre_Cate" class="control-label">
                                 Estado Categoria<span class="required">*</span>
                             </label>
-                            <input type="text" disabled class="form-control" id="estado" name="nombre">
+                            <input type="text" disabled class="form-control" id="esta" name="esta">
                             <p class="edit_errorName text-danger hidden"></p>
                         </div>
                     </form>
@@ -240,7 +250,7 @@
                 ajax: '{!! route('Categorias.index') !!}',
                 columns: [
                     { data: 'nombre_cate', name: 'nombre_cate' },
-                    { data: 'estado', name: 'estado' },
+                    { data: 'cate_estado', name: 'cate_estado' },
                     { "data": "action", orderable:false, searchable: false}
 
                 ]
@@ -262,7 +272,7 @@ $('#ADCate').click(function () {
                 data : {
                     'csrf-token': $('input[name=_token]').val(),
                     name : $('#nombre_Cate').val(),
-
+                    estado : $('#estado').val(),
                 },
                 success:function (data) {
                    $('.errorName').addClass('hidden');
@@ -300,10 +310,11 @@ $('#ADCate').click(function () {
                 type : 'GET',
                 datatype : 'json',
                 success:function(data){
+
                     $('#cate_id').val(data.idcategoria);
                     $('#nombre').val(data.nombre_cate);
                     $('.edit_errorName').addClass('hidden');
-                    $('#estado').val(data.estado);
+                    $('#esta').val(data.cate_estado);
                     $('#mdlEditData').modal('show');
 
                 }
@@ -363,12 +374,16 @@ $('#ADCate').click(function () {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
+
                             $('#deletD').modal('hide');
+                            table.ajax.reload(null,false);
+
+
                         }
 
 
                     });
-                    setTimeout(window.location.reload.bind(window.location), 4000);
+
 
 
 

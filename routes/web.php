@@ -34,15 +34,13 @@ Route::group(['middleware' => ['auth','is_admn']], function () {
     Route::PATCH('Usuario/editUser/{idusuarios}','UsuarioController@updateUser');
     Route::PATCH('Perfil/editPersona/{idPersona}','PerfController@updatePersona');
     Route::PATCH('Perfil/editUser/{idusuarios}','PerfController@updateUser');
-    Route::resource('Mobiliarios','MobiliarioController');
     Route::resource('Reportes','ReporController');
     Route::resource('Roles','RolController');
     Route::get('Departamentos','DepartamentosController@mostrar')->name('showdepar');
     Route::resource('Departamen','DepartamentosController');
-    Route::post('delete/{idDepartamento}','DepartamentosController@eliminar');
     Route::resource('MobiResponsable','MobiController');
-
-
+    Route::resource('mobiliario','MobiliarioController');
+    Route::get('delete/{idDepartamento}','DepartamentosController@eliminar');
 
 
 

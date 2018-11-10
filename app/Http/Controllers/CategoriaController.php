@@ -41,6 +41,7 @@ class CategoriaController extends Controller
 
         $Rules =[
           'name' => 'required|min:2|max:32' ,
+            'estado' => 'required|min:2|max:32' ,
         ];
         $valida= Validator::make(Input::all(),$Rules);
         if($valida->fails()){
@@ -48,6 +49,7 @@ class CategoriaController extends Controller
         }else{
             $categoria=new Categoria();
             $categoria->nombre_cate=$categoriaFormRequest->name;
+            $categoria->cate_estado=$categoriaFormRequest->estado;
             $categoria->save();
             return response()->json(array("success"=>true));
         }
