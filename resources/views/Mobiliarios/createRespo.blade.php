@@ -99,7 +99,18 @@
     <input type="file" class="form-control" id="imagen" name="imagen">
      <input type="hidden"  class="form-control" src="{{asset('dist/img/user2-160x160.jpg')}}" id="imag" name="imagen">
      </div>
-   </div></br>
+   </div>
+     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+         <div class="form-group">
+             <label for="exampleInputEmail1">Responsable</label>
+             <select name="perso" class="form-control" >
+                 <option> seleccione su nombre</option>
+                 @foreach($perso as $per)
+                 <option value="{{$per->idPersona}}">{{$per->nombres}}</option>
+                     @endforeach
+             </select>
+         </div>
+     </div>
      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"></br>
        <div class="form-group">
             	<button class="btn btn-primary" type="submit">Guardar</button>

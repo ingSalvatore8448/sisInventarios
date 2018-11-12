@@ -10,7 +10,8 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" type="text/css" href="{{asset('sweetalert/sweetalert2.min.css')}}">
-
+  <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- datatables cdn-->
   <link href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" rel="stylesheet">
@@ -437,8 +438,6 @@
 
             <li><a href="{{URL('Mob/mobicre')}}"><i class="fa fa-circle-o"></i>Registrar  Mobiliario</a></li>
             <li><a href="{{URl('MobiResponsable')}}"><i class="fa fa-circle-o"></i>Listar  Responsable</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i>Detalle Mobiliarios</a></li>
-
           </ul>
         </li>  
 
@@ -457,6 +456,22 @@
           </ul>
         </li>
 
+          <li class="treeview">
+            <a href="#">
+
+              <i class="fa fa-line-chart" style="color: white" aria-hidden="true"></i>
+              <span>Inventario</span>
+              <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{url('Inventarios')}}"><i class="fa fa-circle-o"></i> Registrar Inventarios</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i>Listar Inventario</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i>Historial Inventario</a></li>
+            </ul>
+          </li>
+
       </ul>
 
     </section>
@@ -472,15 +487,16 @@
     <!-- Main content -->
     <section class="content">
 
-
-
       @yield('contenido')
+
 
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <center>
+
+</div>
+
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
@@ -545,6 +561,7 @@
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 
 @yield('footer_scripts')
 

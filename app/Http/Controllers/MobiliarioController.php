@@ -9,6 +9,7 @@ use Inventario\Mobiliarios;
 use Inventario\Categoria;
 use Inventario\PartesModel;
 use Inventario\Departamentos;
+use Inventario\Persona;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use Inventario\Http\Requests\DepartamentosRequest;
@@ -102,7 +103,8 @@ class MobiliarioController extends Controller
        public function CrearMobi(){
         $mobiliario=Categoria::all();
         $departamento=Departamentos::all();
-        return view('Mobiliarios.createRespo',['categoria'=>$mobiliario,'departamento'=>$departamento]);
+        $persona=DB::select("SELECT Concat(nombre,' ',apellido_Paterno,' ',apellido_Materno) as nombres,idPersona,telefono,dni,sexo,Fecha_cumple,Rol_idRol,Departamento_idDepartamento FROM persona");
+        return view('Mobiliarios.createRespo',['categoria'=>$mobiliario,'departamento'=>$departamento,'perso'=>$persona]);
        }
 
        public function registrar(Mobiliariorequest $request){
@@ -116,6 +118,7 @@ class MobiliarioController extends Controller
            $mobiliario->comentario=$request->get("comentario");
            $mobiliario->Departamento_idDepartamento=$request->get('nombre_depar');
            $mobiliario->categoria_idcategoria=$request->get('nombre_cate');
+           $mobiliario->idPersona=$request->get('persona');
            if(Input::hasFile('imagen')){
                $file=Input::file('imagen');
                $file->move(public_path().'/Imagenes/Mobiliario/',$file->getClientOriginalName());

@@ -26,5 +26,8 @@ class Persona extends Model
 
 
     ];
+    public function mobiliario(){
+        return $this->belongsTo(Persona::class,'idPersona');
+    }
 
  }
