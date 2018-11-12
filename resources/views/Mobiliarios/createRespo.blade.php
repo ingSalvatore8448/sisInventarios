@@ -69,6 +69,7 @@
     <select name="estado" class="form-control" >
        <option>Seleccione estado</option>
        <option value="bueno">bueno</option>
+        <option value="regular">Regular</option>
           <option value="malo">malo</option>
      
     </select>

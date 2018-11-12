@@ -1,264 +1,345 @@
 @extends('layaouts.admin')
+
 @section('contenido')
 
-    <div class="container-fluid">
-        <h3>Listado de Mobiliarios<a href="Mobiliarios/create" ><button class="btn btn-success">Nuevo</button></a></h3>
-       <strong><h3>Reportes</h3></strong>
-
-        <div class="table-responsive">
-            <table class="table table-striped  hover  "  id="users-table">
-                <thead>
-
-                <th>NOMBRE</th>
-                <th>Marca</th>
-                <th>Serie</th>
-                <th>Fecha</th>
-                <th>Comentario</th>
-                <th>Departamento</th>
-                <th>CATEGORIA</th>
-                <th>Imagen</th>
-                <th>Estado</th>
-                <th>ID</th>
-                <th>Opciones</th>
-                </thead>
-            </table>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <h3>Listado de Mobiliarios Responsable</h3>
         </div>
     </div>
-    <form id="actualidarDatos" >
-        <div class="modal fade" id="modal-editMobi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="exampleModalLabel">Modificar país:</h4>
-                    </div>
-                    <div class="modal-body">
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <table id="tbmobi" class="table">
+                    <thead>
+                    <th>Nombre</th>
+                    <th>Marca</th>
+                    <th>Serie</th>
+                    <th>Fecha Registro</th>
+                    <th>Departamento</th>
+                    <th>Categoria</th>
+                    <th>Imagen</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-slide-in-right" aria-hidden="true"
+         role="dialog" tabindex="-1" id="updatePro">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title">Actualizar Mobiliarios</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="UpdateMobi"  >
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="row">
-                       <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                        <div class="form-group">
-                            <label for="nombre" class="control-label">Nombre:</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre_mobi"    maxlength="2">
-                            <input type="hidden" class="form-control" id="id_mobi" name="id">
-                        </div>
-                       </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                        <div class="form-group">
-                            <label for="marca" class="control-label">Marca:</label>
-                            <input type="text" class="form-control" id="marca" name="marca"  maxlength="45">
-                        </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                             <div class="form-group">
-                            <label for="serie" class="control-label">Serie:</label>
-                            <input type="text" class="form-control" id="serie" name="serie"  maxlength="3">
-                        </div>
-                        </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="estado" id="esta" class="control-label">Estado:</label>
-                                    <input type="text" class="form-control" id="estado"  disabled maxlength="30">
+                                    <label for="exampleInputEmail1">Nombre Mobiliario</label>
+                                    <input type="text" class="form-control" id="nombre" required="Campo Obligatorio" name="nombre" placeholder="nombre" >
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Marca</label>
+                                    <input type="text" class="form-control" id="marca_mobi" required="Campo Obligatorio"
+                                           name="marca_mobi"  placeholder="Marca">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="comentario" class="control-label">Comentario:</label>
-                                    <input type="text"  class="form-control" id="comentario" name="capital"  maxlength="30">
+                                    <label for="exampleInputEmail1">Serie</label>
+                                    <input type="text" class="form-control" id="serie_mobi" required="Campo Obligatorio"
+                                           name="serie_mobi" placeholder="Serie" >
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="departamento" class="control-label">Departamento:</label>
-                                    <select class="form-control" id="departamento" name="departamento" >
+                                    <label for="exampleInputEmail1">Estado</label>
+                                    <input type="text" readonly="readonly" class="form-control" id="estado"
+                                           required="Campo Obligatorio" name="estado"  placeholder="estado">
+                                </div>
+                            </div>
 
-
+                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Departamento</label>
+                                    <select class="form-control" id="departamento" required="Campo Obligatorio"
+                                            name="departamento" >
                                     </select>
-
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="cate" class="control-label">Categoria:</label>
-                                    <select class="form-control" id="cate" name="cate" >
-
+                                    <label for="exampleInputEmail1">Categoria</label>
+                                    <select class="form-control" id="categoria"
+                                            required="Campo Obligatorio"  name="Categoria" >
                                     </select>
-
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                                <label for="exampleInputEmail1">Fecha</label>
+                                <label for="exampleInputEmail1">Fecha Registro</label>
                                 <div class="input-group date"  data-provide="datepicker">
-                                    <input type="text" name="fecha"  id="fecha" class="form-control">
+                                    <input type="text" name="fecha_regi" id="fecha_regi" class="form-control">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-th"></span>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="imagen" class="control-label">Imagen:</label>
-                                    <input type="file" class="form-control" id="imagen" name="imagen" >
 
-                                </div>
                             </div>
 
 
+                        </div><br>
+                        <center><div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button"  class="btn btn-success" id="updaMobi">Registrar</button>
+                            </div></center>
 
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="cerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Actualizar datos</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+    <!--modal eliminar-->
+    <div id="deletMobi" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <form id="eliminar"></form>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="fa fa-trash"></i>
+                    </div>
+                    <h4 class="modal-title">Estas seguro?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Realmente quieres borrar estos registro? Este proceso no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cancel" onreset="eliminar()" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                    <button type="submit"  id="delete" class="btn btn-danger" >Eliminar</button>
+                </div>
+            </div>
         </div>
-    </form>
-
-
+    </div>
 @endsection
+
 @section('footer_scripts')
-    <script>
-       $(document).ready(function () {
-           var  table;
 
-           table =   $('#users-table').DataTable({
-               stateSave: true,
-               responsive: true,
-               processing: true,
-               serverSide : true,
-               dom: 'Bfrtip',
-               buttons: [
-                   {
-                       extend: 'excelHtml5',
-                       title: "Listado de Mobiliario",
-                       exportOptions: {
-                           columns: [ 0, 1,2, 3, 4, 5,6,7,8 ]
-                       }
-                   },
-                   {
-                       extend: 'pdfHtml5',
-                       title: "Listado de Mobiliario",
-                       exportOptions: {
-                           columns: [ 0, 1,2, 3, 4, 5,6,7,8 ]
-                       }
-
-                   },
-                   {
-                       extend: 'print',
-                       title: "Listado de Mobiliario",
-                       exportOptions: {
-                           columns: [ 0, 1,2, 3, 4, 5,6,7,8 ]
-                       }
-
-                   }
+    <script type="text/javascript">
+        var table;
+        $(document).ready(function () {
+            table = $('#tbmobi').dataTable({
+                stateSave: true,
+                responsive: true,
+                processing: false,
+                serverSide : true,
+                language: {
 
 
-
-               ],
-               language: {
-
-
-                   "sProcessing":     "Procesando...",
-                   "sLengthMenu":     "Mostrar _MENU_ registros",
-                   "sZeroRecords":    "No se encontraron resultados",
-                   "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                   "sInfo":           "Mostrando del _START_ al _END_ de un total de _TOTAL_ registros",
-                   "sInfoEmpty":      "Ningún dato disponible en esta tabla",
-                   "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                   "sInfoPostFix":    "",
-                   "sSearch":         "Buscar:",
-                   "sUrl":            "",
-                   "sInfoThousands":  ",",
-                   "sLoadingRecords": "Cargando...",
-                   "oPaginate": {
-                       "sFirst":    "Primero",
-                       "sLast":     "Último",
-                       "sNext":     "Siguiente",
-                       "sPrevious": "Anterior"
-                   },
+                    "sProcessing":     "Procesando...",
+                    "sLengthMenu":     "Mostrar _MENU_ registros",
+                    "sZeroRecords":    "No se encontraron resultados",
+                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                    "sInfo":           "Mostrando del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty":      "Ningún dato disponible en esta tabla",
+                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix":    "",
+                    "sSearch":         "Buscar:",
+                    "sUrl":            "",
+                    "sInfoThousands":  ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst":    "Primero",
+                        "sLast":     "Último",
+                        "sNext":     "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
 
 
-                   "oAria": {
-                       "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                       "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                   },
+                    "oAria": {
+                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
 
 
 
-               },
-               ajax: '{{route('MobiResponsable.index')}}',
+                },
+                ajax: '{{url('mobiliario')}}',
 
-               columns: [
-
-                   {data: 'nombre_Mobi', name: 'nombre_Mobi'},
-                   {data: 'marca_Mobi', name: 'marca_Mobi'},
-                   {data: 'serie_Mobi', name: 'serie_Mobi'},
-                   {data: 'fecaRe_Mobi', name: 'fecaRe_Mobi'},
-                   {data: 'comentario', name: 'comentario'},
-                   {data: 'nombre_depar', name: 'departamento.nombre_depar'},
-                   {data: 'nombre_cate', name: 'categorias.nombre_cate'},
-                   {data: 'imagen', name: 'imagen'},
-                   {data: 'estado', name: 'estado'},
-                   {data: 'idMobiliario', name: 'idMobiliario'},
-                   {data: 'action', name: 'action', orderable: false, searchable: false},
+                columns: [
+                    {data: 'nombre_Mobi', name:'nombre_Mobi'},
+                    {data: 'marca_Mobi', name:'marca_Mobi'},
+                    {data: 'serie_Mobi',name:'serie_Mobi'},
+                    {data: 'fecaRe_Mobi', name:'fecaRe_Mobi'},
+                    {data: 'nombre_depar',name:'nombre_depar'},
+                    {data: 'nombre_cate',name:'nombre_cate'},
+                    {data: 'imagen', name: 'imagen', orderable: true, searchable: true},
+                    {data: 'estado',name:'estado'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
 
 
-
-               ]
+                ]
 
 
 
-           });
+            })
 
+        })
 
-
-       });
-
-
-        function editar(idMobiliario) {
-            if (idMobiliario){
-
+        function editarMobi(idMobiliario) {
+            if(idMobiliario){
                 $.ajax({
-                    url:'{{url('editar/')}}'+idMobiliario,
-                    type:'get',
+                    url:'{{url('mobiliarios')}}/'+idMobiliario,
                     dataType:'json',
-
+                    type:'get',
                     success:function (response) {
-
-
-                    $('#nombre').val(response.mobi.nombre_Mobi);
-                    $('#marca').val(response.mobi.marca_Mobi);
-                    $('#serie').val(response.mobi.serie_Mobi);
-                    $('#estado').val(response.mobi.serie_Mobi);
-                    $('#fecha').val(response.mobi.fecaRe_Mobi);
-                    $('#comentario').val(response.mobi.comentario);
-                    $.each(response.depa,function (index,i) {
-                        $("#departamento").append('<option value='+i.idDepartamento+'>'+i.nombre_depar+'</option>');
-
-                    });
-                    $.each(response.categoriass,function (index,val) {
-                        $("#cate").append('<option value='+val.idcategoria+ '  selected >'+val.nombre_cate+ '</option>');
-                    });
+                        $.each(response.mobi,function (index,mobi) {
+                            $('#nombre').val(mobi.nombre_Mobi);
+                            $('#marca_mobi').val(mobi.marca_Mobi);
+                            $('#serie_mobi').val(mobi.serie_Mobi);
+                            $('#estado').val(mobi.estado);
+                            $('#fecha_regi').val(mobi.fecaRe_Mobi);
 
 
 
+                            $.each(response.depa,function (index,val) {
+
+
+                                if(val.idDepartamento===mobi.Departamento_idDepartamento){
+                                    $("#departamento").append('<option  value='+val.idDepartamento+' selected>'+val.nombre_depar+'</option>');
+
+
+                                }else {
+                                    $("#departamento").append('<option  value='+val.idDepartamento+' >'+val.nombre_depar+'</option>');
+                                }
+
+                            });
+
+                            $.each(response.cate,function (index,va) {
+                                if(va.idcategoria===mobi.categoria_idcategoria){
+                                    $("#categoria").append('<option  value='+va.idcategoria+' selected>'+va.nombre_cate+'</option>');
+
+                                }else {
+                                    $("#categoria").append('<option  value='+va.idcategoria+' >'+va.nombre_cate+'</option>');
+                                }
+
+                            });
+                        });
+                        $('#updaMobi').click(function (e) {
+                            $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                            });
+                            e.preventDefault();
+                            var frm=$('#UpdateMobi');
+                            $.ajax({
+                                url:'{{url('update/mobi')}}/'+idMobiliario,
+                                dataType:'json',
+                                type:'post',
+                                data:frm.serialize(),
+                                success:function (response) {
+                                    frm.trigger('reset');
+                                    $('#updatePro').modal('hide');
+                                    swal({
+                                        position: 'center',
+                                        type: 'success',
+                                        title: 'Actualizado Correctamente',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    setTimeout(window.location.reload.bind(window.location), 1000);
+                                    return false;
+
+                                },
+                                error:function () {
+                                    alert('error al registrar');
+                                }
+                            })
+
+                        })
+
+
+                    },
+
+                    Error:function () {
+                        alert('error al cargar sus datos');
                     }
 
-
-
-
-                });
-
+                })
             }
 
+        }
+        function delteMobi(idMobiliario){
+            if (idMobiliario){
+                $('#delete').click(function () {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    var frm=$('#eliminar');
+                    $.ajax({
+                        url:'{{url('eliminar')}}/'+idMobiliario,
+                        dataType:'json',
+                        type:'post',
+                        data:frm.serialize(),
+                        success:function () {
+                            frm.trigger('reset');
+                            $('#deletMobi').modal('hide');
+                            swal({
+                                position: 'center',
+                                type: 'success',
+                                title: 'Eliminado Correctamente',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            setTimeout(window.location.reload.bind(window.location), 4000);
+                            return false;
+
+                        },
+                        error:function () {
+                            alert('error al Eliminar');
+                        }
+
+
+                    });
+                });
+
+
+            } else {
+                alert('error');
+            }
 
         }
 
+        $('body').on('hidden.bs.modal', '.modal', function () {
+
+            $("#categoria").empty();
+            $("#departamento").empty();
 
 
+        });
+        $('#deletMobi').on('hidden.bs.modal', function (e) {
+            // do something...
+            location.reload();
+
+
+        })
 
 
     </script>
-    @endsection
+@endsection

@@ -16,25 +16,31 @@ class MobiUserController extends Controller
     public function index(Request $request)
 
     {
-        $mobi = DB::table('mobiliario')
-            ->join('departamento', 'mobiliario.Departamento_idDepartamento', '=', 'departamento.idDepartamento')
-            ->join('categorias', 'mobiliario.categoria_idcategoria', '=', 'categorias.idcategoria')
-            ->select(['nombre_Mobi', 'idMobiliario', 'marca_Mobi', 'serie_Mobi', 'fecaRe_Mobi',
-                'comentario', 'departamento.idDepartamento', 'departamento.nombre_depar', 'categorias.idcategoria', 'categorias.nombre_cate', 'estado', 'imagen'
-            ]);
-        if (request()->ajax()) {
+        $mobi=DB::select("
+        SELECT m.idMobiliario, m.nombre_Mobi,m.marca_Mobi,m.serie_Mobi,m.estado,m.fecaRe_Mobi,m.comentario,m.Departamento_idDepartamento,m.categoria_idcategoria,m.imagen , d.nombre_depar,c.nombre_cate 
+        FROM mobiliario as m , departamento as d , categorias as c WHERE m.Departamento_idDepartamento=d.idDepartamento
+         and m.categoria_idcategoria=c.idcategoria
+        ");
+        if ($request->ajax()){
             return Datatables::of($mobi)
                 ->addColumn('action', function ($id){
+                    return ' <a data-toggle="modal" data-target="#updatePro" onclick="editarMobi('.$id->idMobiliario.')" class="btn btn-warning"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            <span><strong></strong></span>            
+    </a>
+     <a  onclick="delteMobi('.$id->idMobiliario.')" data-toggle="modal" data-target="#deletMobi" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <span><strong></strong></span>            
+    </a>
+    
+    ';
+                })->addColumn('imagen', function ($mobi){
+                    $url= asset('Imagenes/Mobiliario/'.$mobi->imagen);
+                    return '<img src="'.$url.'"  height="60px" width="60px"/>';
 
-                    return '<a data-toggle="modal" data-target="#modal-editMobi" onclick="editar('. $id->idMobiliario . ')" class="btn btn-primary">Edit</a>
-                       <button class="btn btn-danger" data-remote="/news/' . $id->idMobiliario . '">Delete</button>
-                  ';
-                })
 
-                ->make(true);
-
+                })->rawColumns(['imagen', 'action'])->make(true);
         }
-          return view('MobiResponsable.lisUser');
+
+        return view('MobiResponsable.lisUser');
 
     }
 

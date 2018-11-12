@@ -38,9 +38,13 @@ Route::group(['middleware' => ['auth','is_admn']], function () {
     Route::resource('Roles','RolController');
     Route::get('Departamentos','DepartamentosController@mostrar')->name('showdepar');
     Route::resource('Departamen','DepartamentosController');
-    Route::resource('MobiResponsable','MobiController');
+
     Route::resource('mobiliario','MobiliarioController');
+    Route::get('mobiliarios/{idMobiliario}','MobiliarioController@cargarMobi');
+    Route::post('update/mobi/{idMobiliario}','MobiliarioController@actualizar');
+    Route::post('eliminar/{idMobiliario}','MobiliarioController@eliminar');
     Route::get('delete/{idDepartamento}','DepartamentosController@eliminar');
+
 
 
 

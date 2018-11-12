@@ -17,7 +17,7 @@ use Inventario\Http\Requests\Mobiliariorequest;
 use Inventario\Http\Requests\MobiRes;
 use Validator;
 use DB;
-
+use Yajra\Datatables\Datatables;
 use Mockery\Exception;
 
 class MobiliarioController extends Controller
@@ -37,13 +37,14 @@ class MobiliarioController extends Controller
         if ($request->ajax()){
             return Datatables::of($mobi)
                 ->addColumn('action', function ($id){
-                    return '<a data-toggle="modal" data-target="#formEdir"  onclick="editarPro('. $id->idproducto . ')" >
-<button type="button" class="btn btn-outline-success btn-social-icon-text"><i class="fas fa-pencil-alt btn-icon-append"></i></button></a>
-                       <a data-toggle="modal" data-target="#deletPro"   onclick="eliminarPro('. $id->idproducto . ')" >
-                        <button type="button" class="btn btn-outline-success ">
-                          <i class="fas fa-trash text-danger"></i>                          
-                        </button>
-</a>';
+                    return ' <a data-toggle="modal" data-target="#updatePro" onclick="editarMobi('.$id->idMobiliario.')" class="btn btn-warning"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            <span><strong></strong></span>            
+    </a>
+     <a  onclick="delteMobi('.$id->idMobiliario.')" data-toggle="modal" data-target="#deletMobi" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <span><strong></strong></span>            
+    </a>
+    
+    ';
                 })->addColumn('imagen', function ($mobi){
                     $url= asset('Imagenes/Mobiliario/'.$mobi->imagen);
                     return '<img src="'.$url.'"  height="60px" width="60px"/>';
@@ -56,51 +57,46 @@ class MobiliarioController extends Controller
     }
 
 
-    public function edit($id)
-    {
-        $mobiliario = Mobiliarios::findOrFail($id);
-        $departamento = Departamentos::all();
-        $categoria = Categoria::all();
-
-        return view("Mobiliarios.editMobi", ["mobiliario" => $mobiliario, "departamento" => $departamento, "categoria" => $categoria]);
-
-    }
-
-    public function canbiarestado($id)
-    {
-
-    }
 
 
-    public function update( Mobiliariorequest $request,$id){
-        $mobiliario=Mobiliarios::findOrFail($id);
-       $mobiliario->nombre_Mobi=$request->get('nombre');
-        $mobiliario->marca_Mobi=$request->get('marca');
-        $mobiliario->serie_Mobi=$request->get("serie");
-        $mobiliario->fecaRe_Mobi=$request->get("fecha");
-        $mobiliario->estado=$request->get('estado');
-        $mobiliario->comentario=$request->get("comentario");
-        $mobiliario->Departamento_idDepartamento=$request->get('nombre_depar');
-        $mobiliario->categoria_idcategoria=$request->get('nombre_cate');
-         $mobiliario->idMobiliario=$request->get('idMobi');
-         if(Input::hasFile('imagen')){
-            $file=Input::file('imagen');
-            $file->move(Storage_path().'/Imagenes/Mobiliario/',$file->getClientOriginalName());
-            $mobiliario->imagen=$file->getClientOriginalName();
+    public function actualizar( Request $request,$id){
+        $array=[
 
-         }
-        $mobiliario->update();
+            'nombre'=>'required',
+            'marca_mobi'=>'required',
+            'serie_mobi'=>'required',
+            'departamento'=>'required',
+            'Categoria'=>'required',
+            'fecha_regi'=>'required',
+        ];
+        $valida=Validator::make(Input::all(),$array);
+        if ($valida->fails()){
+            return response()->json(array('errors' => $valida->getMessageBag()->toArray()));
+
+        }else{
+            $mobiliario=Mobiliarios::findOrFail($id);
+            $mobiliario->nombre_Mobi=$request->get('nombre');
+            $mobiliario->marca_Mobi=$request->get('marca_mobi');
+            $mobiliario->serie_Mobi=$request->get("serie_mobi");
+            $mobiliario->fecaRe_Mobi=$request->get("fecha_regi");
+            $mobiliario->estado=$request->get('estado');
+            $mobiliario->comentario=$request->get("comentario");
+            $mobiliario->Departamento_idDepartamento=$request->get('departamento');
+            $mobiliario->categoria_idcategoria=$request->get('Categoria');
+            if(Input::hasFile('imagen')){
+                $file=Input::file('imagen');
+                $file->move(Storage_path().'/Imagenes/Mobiliario/',$file->getClientOriginalName());
+                $mobiliario->imagen=$file->getClientOriginalName();
+
+            }
+            $mobiliario->update();
+        }
+
    
-        return Redirect::to('Mobiliarios');
+        return response()->json($mobiliario);
 
     }
 
-    public function destroy($id){
-    	$mobiliario=Mobiliarios::findOrFail($id);
-        $mobiliario->delete();
-
-          return Redirect::to('Mobiliarios');
-    }
 
 
        public function CrearMobi(){
@@ -130,71 +126,10 @@ class MobiliarioController extends Controller
 
            $mobiliario->save();
 
-           return Redirect::to('mob/lisMobi');
+           return Redirect::to('mobiliario');
 
        }
 
-       public function listar(Request $request){
-           if($request){
-
-               $query=trim($request->get('buscar'));
-               $mobiliarios=DB::table('mobiliario as m')
-                   ->join('departamento as de','m.Departamento_idDepartamento', '=','de.idDepartamento')
-                   ->join('categorias as ca', 'm.categoria_idcategoria','=','ca.idcategoria')
-
-                   ->select('m.nombre_Mobi', 'm.idMobiliario','m.marca_Mobi','m.serie_Mobi','m.estado','m.fecaRe_Mobi','m.comentario','de.idDepartamento','de.nombre_depar','ca.idcategoria','ca.nombre_cate','m.imagen')
-                   ->where('nombre_Mobi','like','%'.$query.'%')
-                   ->orwhere('m.marca_Mobi','LIKE','%'.$query.'%')
-                   ->orderBy('m.nombre_Mobi','desc')
-
-                   ->paginate(7);
-
-               return view('Mobiliarios.listaMobi',['mobiliarios'=>$mobiliarios,'buscar'=>$query]);
-
-
-
-           }
-
-       }
-
-       public function eliminar($id){
-           $mobi=Mobiliarios::find($id);
-           $mobi->delete();
-           return Redirect::to('mob/lisMobi');
-
-       }
-       public function editar($id){
-           $mobiliario=Mobiliarios::findOrFail($id);
-           $departamento=Departamentos::all();
-           $categoria=Categoria::all();
-
-           return view("Mobiliarios.updateRes",[ "mobiliario"=>$mobiliario,"departamento"=>$departamento,"categoria"=>$categoria]);
-
-
-       }
-       public function updateMobi(MobiRes $request,$id){
-
-           $mobiliario=Mobiliarios::findOrFail($id);
-
-           $mobiliario->nombre_Mobi=$request->get('nombre');
-           $mobiliario->marca_Mobi=$request->get('marca');
-           $mobiliario->serie_Mobi=$request->get("serie");
-           $mobiliario->fecaRe_Mobi=$request->get("fecha");
-           $mobiliario->comentario=$request->get("comentario");
-           $mobiliario->Departamento_idDepartamento=$request->get('nombre_depar');
-           $mobiliario->categoria_idcategoria=$request->get('nombre_cate');
-           $mobiliario->idMobiliario=$request->get('idMobi');
-           if(Input::hasFile('imagen')){
-               $file=Input::file('imagen');
-               $file->move(Storage_path().'/Imagenes/Mobiliario/',$file->getClientOriginalName());
-               $mobiliario->imagen=$file->getClientOriginalName();
-
-           }
-           $mobiliario->update();
-
-           return Redirect::to('mob/lisMobi');
-
-       }
 
        public function getpartes(){
         $departamento=Departamentos::all();
@@ -271,6 +206,22 @@ class MobiliarioController extends Controller
 
 
 
+       }
+       public function cargarMobi($id){
+
+        $mobi=DB::select("SELECT m.idMobiliario,m.marca_Mobi,m.nombre_Mobi,m.serie_Mobi,m.estado,m.fecaRe_Mobi,m.comentario,m.Departamento_idDepartamento,m.categoria_idcategoria,m.imagen,m.codigo FROM mobiliario as m ,departamento as d, categorias as c WHERE m.Departamento_idDepartamento=d.idDepartamento
+ and m.categoria_idcategoria=c.idcategoria AND m.idMobiliario=$id");
+        $depar=Departamentos::all();
+        $cate=Categoria::all();
+        $data=array('mobi'=>$mobi,'depa'=>$depar,'cate'=>$cate);
+
+          return response()->json($data);
+
+       }
+       public function eliminar($id){
+        $mobi=Mobiliarios::find($id);
+        $mobi->delete();
+        return response()->json($mobi);
        }
 
 
