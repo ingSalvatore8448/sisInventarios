@@ -3,12 +3,23 @@
   @section('contenido')
       <!-- Main content -->
       <section class="content">
-          <div class="callout callout-info">
-              <h4>Inventario</h4>
 
-              <p>Bienvenido Docente:<strong><span class="hidden-xs"> {{ Auth::user()->username }}</span></strong>      al Inventario del Colegio Buen Pastor de cristo rey.</p>
-          </div><br>
+          @if(Auth::user()->idRol==1)
+              <div class="callout callout-danger">
+                  <h4>Inventario</h4>
 
+                  <p>Bienvenido Administrador:<strong><span class="hidden-xs"> {{ Auth::user()->username }}</span></strong>al inventario de los mobiliarios</p>
+              </div><br>
+              @elseif(Auth::user()->idRol==2)
+              <div class="callout callout-info">
+                  <h4>Inventario</h4>
+
+                  <p>Bienvenido Docente:<strong><span class="hidden-xs"> {{ Auth::user()->username }}</span></strong>Sea cuidadoso al realizar Inventario</p>
+              </div><br>
+          @endif
+
+<input value="{{ Auth::user()->id }}" id="iduser" type="hidden">
+          @if(Auth::user()->idRol==1)
           <div class="input-group">
               <div class="input-group-btn">
                   <button type="button" class="btn btn-danger">Buscar Docente</button>
@@ -16,6 +27,7 @@
               <!-- /btn-group -->
               <input type="text" id="docente" name="docente" class="form-control">
           </div><br>
+      @endif
           <!-- Default box -->
           <div class="box">
               <div class="box-header with-border">
@@ -25,7 +37,8 @@
                           <div class="table-responsive">
                               <table id="tbmobi" class="table">
                                   <thead>
-                                  <th>Nombre</th>
+                                  <th>Responsable</th>
+                                  <th>Mobiliario</th>
                                   <th>Marca</th>
                                   <th>Serie</th>
                                   <th>Fecha del Invenatrio</th>
@@ -40,9 +53,6 @@
                           </div>
                       </div>
                   </div>
-              </div>
-              <div class="box-body">
-                  Start creating your amazing application!
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
@@ -66,14 +76,13 @@
 
                   </div>
                   <div class="modal-body">
-                      <form id="UpdateMobi"  >
+                      <form id="UpdateInven"  >
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <div class="row">
                               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                   <div class="form-group">
                                       <label for="exampleInputEmail1">Nombre Mobiliario</label>
                                       <input type="text" class="form-control" id="nombre" required="Campo Obligatorio" name="nombre" placeholder="nombre" >
-                                      <input type="hidden"  class="form-control" id="idPersona" required="Campo Obligatorio" name="nombre" placeholder="nombre" >
                                   </div>
                               </div>
 
@@ -97,8 +106,8 @@
                                       <select class="form-control" id="estado"required="Campo Obligatorio" name="estado">
                                           <option >Selecione Estado</option>
                                           <option value="bueno">Bueno</option>
-                                          <option value="bueno">Regular</option>
-                                          <option value="bueno">Malo</option>
+                                          <option value="regular">Regular</option>
+                                          <option value="malo">Malo</option>
                                       </select>
                                   </div>
                               </div>
@@ -106,7 +115,7 @@
                               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                   <div class="form-group">
                                       <label for="exampleInputEmail1">Departamento</label>
-                                      <select class="form-control" id="departamento" required="Campo Obligatorio"
+                                      <select class="form-control" id="departamento"
                                               name="departamento" >
                                       </select>
                                   </div>
@@ -133,7 +142,23 @@
                                   <div class="form-group">
                                       <label for="exampleInputEmail1">Descripcion</label>
                                       <input type="text" class="form-control" id="descripcion"
-                                             required="Campo Obligatorio" name="descripcion"  placeholder="estado">
+                                             required="Campo Obligatorio" name="descripcion"  placeholder="Descripcion">
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                                  <div class="form-group">
+                                      <label for="exampleInputEmail1">Nombre Responsable</label>
+                                      <input type="text" class="form-control" id="nombres"
+                                             required="Campo Obligatorio" readonly="readonly" name="nombre"  placeholder="Descripcion">
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                                  <div class="form-group">
+                                      <label for="exampleInputEmail1">Apellidos Responsable</label>
+                                      <input type="text" class="form-control" id="apellidos"
+                                             required="Campo Obligatorio" readonly="readonly"  name="apelli"  >
+                                      <input type="hidden" class="form-control" id="idpersona"
+                                             required="Campo Obligatorio"  name="idpersona"  placeholder="Descripcion">
                                   </div>
                               </div>
 
@@ -158,7 +183,7 @@
     <script>
         var table;
 
-var idMobi=$('#idPersona');
+var idMobi=$('#iduser').val();
 
             $('#docente').autocomplete({
                 source:function (request ,response) {
@@ -231,6 +256,7 @@ var idMobi=$('#idPersona');
 
 
             columns: [
+                {data: 'fulname', name:'fulname'},
                 {data: 'nombre_Mobi', name:'nombre_Mobi'},
                 {data: 'marca_Mobi', name:'marca_Mobi'},
                 {data: 'serie_Mobi',name:'serie_Mobi'},
@@ -250,10 +276,8 @@ var idMobi=$('#idPersona');
         function Vincular(idMobiliario) {
 
             if(idMobiliario){
-
-
                 $.ajax({
-                    url: '{{url('mobiliarios')}}/' + idMobiliario,
+                    url: '{{url('cargarMobi')}}/' + idMobiliario,
                     dataType: 'json',
                     type: 'get',
                     success:function (response) {
@@ -261,6 +285,10 @@ var idMobi=$('#idPersona');
                          $('#nombre').val(mobi.nombre_Mobi);
                          $('#marca_mobi').val(mobi.marca_Mobi);
                          $('#serie_mobi').val(mobi.serie_Mobi);
+                         $('#nombres').val(mobi.nombre);
+                         $('#idpersona').val(mobi.idPersona);
+                         $('#apellidos').val(mobi.apellido_Paterno+' '+mobi.apellido_Materno);
+
 
                          $.each(response.cate,function (index,cate) {
                              if(cate.idcategoria===mobi.categoria_idcategoria){
@@ -280,6 +308,34 @@ var idMobi=$('#idPersona');
 
                          })
 
+
+                     });
+                     $('#updaMobi').click(function (e) {
+                         var frm=$('#UpdateInven');
+                         $.ajaxSetup({
+                             headers: {
+                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                             }
+                         });
+                         e.preventDefault();
+                         $.ajax({
+                             url:'{{url('regisInven')}}/'+idMobiliario,
+                             dataType:'json',
+                             type:'post',
+                             data:frm.serialize(),
+                             success:function (response) {
+                                 $('#updatePro').modal('hide');
+                                 swal({
+                                     position: 'center',
+                                     type: 'success',
+                                     title: 'Exito al realizar  Inventario',
+                                     showConfirmButton: false,
+                                     timer: 1500
+                                 });
+                                 table.ajax.reload(null,false);
+
+                             }
+                         });
 
                      })
 

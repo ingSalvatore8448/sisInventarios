@@ -17,4 +17,13 @@ class HomController extends Controller
         $cate=Categoria::count();
         return view('Tablero.tableros',['user'=>$user,'mobi'=>$mobi,'depa'=>$depar,'cate'=>$cate]);
     }
+
+    public function tablero(){
+        $user=User::count();
+        $mobi=Mobiliarios::count();
+        $depar=Departamentos::count();
+        $cate=Categoria::count();
+        return view('Tablero.tableros',['user'=>$user,'mobi'=>$mobi,'depa'=>$depar,'cate'=>$cate]);
+
+    }
 }

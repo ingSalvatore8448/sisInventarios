@@ -41,9 +41,6 @@ class MobiliarioController extends Controller
                     return ' <a data-toggle="modal" data-target="#updatePro" onclick="editarMobi('.$id->idMobiliario.')" class="btn btn-warning"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             <span><strong></strong></span>            
     </a>
-     <a  onclick="delteMobi('.$id->idMobiliario.')" data-toggle="modal" data-target="#deletMobi" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        <span><strong></strong></span>            
-    </a>
     
     ';
                 })->addColumn('imagen', function ($mobi){
@@ -118,7 +115,7 @@ class MobiliarioController extends Controller
            $mobiliario->comentario=$request->get("comentario");
            $mobiliario->Departamento_idDepartamento=$request->get('nombre_depar');
            $mobiliario->categoria_idcategoria=$request->get('nombre_cate');
-           $mobiliario->idPersona=$request->get('persona');
+           $mobiliario->idPersona=$request->get('perso');
            if(Input::hasFile('imagen')){
                $file=Input::file('imagen');
                $file->move(public_path().'/Imagenes/Mobiliario/',$file->getClientOriginalName());

@@ -13,13 +13,10 @@ class inventario extends Model
     protected $fillable=[
         'DescripMobiliario',
         'RegisFechaMobi',
-        'CantidadMobi',
         'EstadoMob',
         'Persona_idPersona',
         'Mobiliario_idMobiliario',
 
     ];
-    public function persona(){
-        return $this->hasMany(Inventario/Persona,'idPersona','idMobiliario');
-    }
+
 }

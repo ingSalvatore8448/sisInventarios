@@ -39,9 +39,6 @@ Route::group(['middleware' => ['auth','is_admn']], function () {
     Route::get('Departamentos','DepartamentosController@mostrar')->name('showdepar');
     Route::resource('Departamen','DepartamentosController');
 
-    Route::resource('mobiliario','MobiliarioController');
-    Route::get('mobiliarios/{idMobiliario}','MobiliarioController@cargarMobi');
-    Route::post('update/mobi/{idMobiliario}','MobiliarioController@actualizar');
     Route::post('eliminar/{idMobiliario}','MobiliarioController@eliminar');
     Route::get('delete/{idDepartamento}','DepartamentosController@eliminar');
 
@@ -52,13 +49,6 @@ Route::group(['middleware' => ['auth','is_admn']], function () {
 });
 
 Route::group(['middleware' => 'is_resonsable'],function (){
-
-
-
-   
-
-
-
    });
 
 Route::get('Mensajes','MensajeController@Mensaje')->name('mensaje');
@@ -74,9 +64,19 @@ Route::get('Mob/mobicre','MobiliarioController@CrearMobi');
 Route::get('mob/lisMobi','MobiliarioController@listar')->name('buscar');
 Route::resource('MobiResponsable','MobiUserController');
 Route::get('Inventarios', 'inventarioController@listar');
-Route::get('Inventario/{idPersona}','inventarioController@listarMobiID');
+Route::get('Inventario/{id}','inventarioController@listarMobiID');
+Route::get('cargarMobi/{id}','inventarioController@CargarMobi');
+Route::post('regisInven/{idMobiliario}','inventarioController@RegisInv');
+Route::get('Historial','inventarioController@Histo');
+Route::get('HistoGeneral','inventarioController@listarhi');
+Route::get('HistoGenera','inventarioController@HistoGene');
+Route::get('cargarHis/{id}','inventarioController@cargarHis');
 Route::get('cargarCliente','inventarioController@cargarCliente');
 Route::get('editar{idMobiliario}','MobiUserController@cargardatos');
 Route::get('cargardatos{idMobiliario}','inventarioController@carData');
 Route::get('login','MensajeController@login');
+Route::resource('mobiliario','MobiliarioController');
+Route::get('mobiliarios/{idMobiliario}','MobiliarioController@cargarMobi');
+Route::post('update/mobi/{idMobiliario}','MobiliarioController@actualizar');
+Route::get(' /{slug?}','HomController@tablero');
 Auth::routes();

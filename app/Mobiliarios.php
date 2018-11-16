@@ -23,5 +23,7 @@ class Mobiliarios extends Model
    
 
     ];
-
+    public function persona(){
+        return $this->hasMany(Inventario/Persona,'idPersona','idMobiliario');
+    }
 }

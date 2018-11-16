@@ -3,7 +3,7 @@
 @section('contenido')
 <div class="row">
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
-		<h3>Listado de Categorías <a data-toggle="modal" data-target="#regi"><button class="btn btn-success">Nuevo</button></a></h3>
+		<h3>Listado de Roles <a data-toggle="modal" data-target="#regi"><button class="btn btn-success">Nuevo</button></a></h3>
 @include('Roles.search')
 			
 	</div>
