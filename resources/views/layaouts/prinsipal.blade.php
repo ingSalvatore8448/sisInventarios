@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Colegio Buen Pastor</title>
+    <title>Pagina Web | I.E.Buen pastos </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -36,7 +36,7 @@
     <link href="lib/animate-css/animate.min.css" rel="stylesheet">
 
     <!-- Main Stylesheet File -->
-    <link href="css/estilos.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- =======================================================
       Theme Name: Imperial
@@ -56,14 +56,14 @@ Hero Section
     <div class="hero-container">
         <div class="wow fadeIn">
             <div class="hero-logo">
-                <img class="" src="img/logo.png" alt="Imperial">
+                <img class="" src="Imagen/logo.png" alt="Imperial">
             </div>
 
-            <h1>Bienvenido a la Pagina del colegio Buen Pastor de Cristo Rey</h1>
-            <h2>Aqui encontraras <span class="rotating">todo Informacion que necesites </span></h2>
+            <h1>Bienvenidos a la web principal del colegio buen pastor de cristo rey</h1>
+            <h2>Aqui <span class="rotating">Encontraras toda informacion que necesites de nuestra colegio </span></h2>
             <div class="actions">
-                <a href="#about" class="btn-get-started">Get Strated</a>
-                <a href="#services" class="btn-services">Our Services</a>
+                <a href="#about" class="btn-get-started">Empezar</a>
+                <a href="#services" class="btn-services">Mas Servicios</a>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@ Header Section
     <div class="container">
 
         <div id="logo" class="pull-left">
-            <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
+            <a href="#hero"><img src="Imagen/logo.png" alt="" title="" /></img></a>
             <!-- Uncomment below if you prefer to use a text image -->
             <!--<h1><a href="#hero">Header 1</a></h1>-->
         </div>
@@ -89,27 +89,11 @@ Header Section
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#team">Team</a></li>
-                <li class="menu-has-children"><a href="">Drop Down</a>
-                    <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li class="menu-has-children"><a href="#">Drop Down 2</a>
-                            <ul>
-                                <li><a href="#">Deep Drop Down 1</a></li>
-                                <li><a href="#">Deep Drop Down 2</a></li>
-                                <li><a href="#">Deep Drop Down 3</a></li>
-                                <li><a href="#">Deep Drop Down 4</a></li>
-                                <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
-                        <li><a href="#">Drop Down 5</a></li>
-                    </ul>
-                </li>
                 <li><a href="#contact">Contact Us</a></li>
-                <li class="menu-has-children"><a href="">Sistema de Inventario</a>
+                <li class="menu-has-children"><a href="">SIA Inventario</a>
                     <ul>
-                        <li><a href="{{url('login')}}">Ingresar</a></li>
+                        <li><a href="{{url('login')}}">Login</a></li>
+
 
                     </ul>
                 </li>
@@ -138,7 +122,7 @@ About Section
         <div class="row">
 
             <div class="col-lg-6 about-img">
-                <img src="img/about-img.jpg" alt="">
+                <img src="Imagen/about-img.jpg" alt="">
             </div>
 
             <div class="col-md-6 about-content">
@@ -239,7 +223,7 @@ Porfolio Section
 
         <div class="row">
             <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(img/portfolio-1.jpg);" href="">
+                <a class="portfolio-item" style="background-image: url(Imagen/portfolio-1.jpg);" href="">
                     <div class="details">
                         <h4>Portfolio 1</h4>
                         <span>Alored dono par</span>
@@ -248,7 +232,7 @@ Porfolio Section
             </div>
 
             <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(img/portfolio-2.jpg);" href="">
+                <a class="portfolio-item" style="background-image: url(Imagen/portfolio-2.jpg);" href="">
                     <div class="details">
                         <h4>Portfolio 2</h4>
                         <span>Alored dono par</span>
@@ -257,7 +241,7 @@ Porfolio Section
             </div>
 
             <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(img/portfolio-3.jpg);" href="">
+                <a class="portfolio-item" style="background-image: url(Imagen/portfolio-3.jpg);" href="">
                     <div class="details">
                         <h4>Portfolio 3</h4>
                         <span>Alored dono par</span>
@@ -266,7 +250,7 @@ Porfolio Section
             </div>
 
             <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(img/portfolio-4.jpg);" href="">
+                <a class="portfolio-item" style="background-image: url(Imagen/portfolio-4.jpg);" href="">
                     <div class="details">
                         <h4>Portfolio 4</h4>
                         <span>Alored dono par</span>
@@ -275,7 +259,7 @@ Porfolio Section
             </div>
 
             <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(img/portfolio-5.jpg);" href="">
+                <a class="portfolio-item" style="background-image: url(Imagen/portfolio-5.jpg);" href="">
                     <div class="details">
                         <h4>Portfolio 5</h4>
                         <span>Alored dono par</span>
@@ -284,7 +268,7 @@ Porfolio Section
             </div>
 
             <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(img/portfolio-6.jpg);" href="">
+                <a class="portfolio-item" style="background-image: url(Imagen/portfolio-6.jpg);" href="">
                     <div class="details">
                         <h4>Portfolio 6</h4>
                         <span>Alored dono par</span>
@@ -293,7 +277,7 @@ Porfolio Section
             </div>
 
             <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(img/portfolio-7.jpg);" href="">
+                <a class="portfolio-item" style="background-image: url(Imagen/portfolio-7.jpg);" href="">
                     <div class="details">
                         <h4>Portfolio 7</h4>
                         <span>Alored dono par</span>
@@ -302,7 +286,7 @@ Porfolio Section
             </div>
 
             <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(img/portfolio-8.jpg);" href="">
+                <a class="portfolio-item" style="background-image: url(Imagen/portfolio-8.jpg);" href="">
                     <div class="details">
                         <h4>Portfolio 8</h4>
                         <span>Alored dono par</span>
@@ -330,14 +314,14 @@ Testimonials Section
         <div class="row">
             <div class="col-md-3">
                 <div class="profile">
-                    <div class="pic"><img src="img/client-1.jpg" alt=""></div>
+                    <div class="pic"><img src="Imagen/client-1.jpg" alt=""></div>
                     <h4>Saul Goodman</h4>
                     <span>Lawless Inc</span>
                 </div>
             </div>
             <div class="col-md-9">
                 <div class="quote">
-                    <b><img src="img/quote_sign_left.png" alt=""></b> Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper. <small><img src="img/quote_sign_right.png" alt=""></small>
+                    <b><img src="Imagen/quote_sign_left.png" alt=""></b> Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper. <small><img src="img/quote_sign_right.png" alt=""></small>
                 </div>
             </div>
         </div>
@@ -345,12 +329,12 @@ Testimonials Section
         <div class="row">
             <div class="col-md-9">
                 <div class="quote">
-                    <b><img src="img/quote_sign_left.png" alt=""></b> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis architecto beatae. <small><img src="img/quote_sign_right.png" alt=""></small>
+                    <b><img src="Imagen/quote_sign_left.png" alt=""></b> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis architecto beatae. <small><img src="img/quote_sign_right.png" alt=""></small>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="profile">
-                    <div class="pic"><img src="img/client-2.jpg" alt=""></div>
+                    <div class="pic"><img src="Imagen/client-2.jpg" alt=""></div>
                     <h4>Sara Wilsson</h4>
                     <span>Odeo Inc</span>
                 </div>
@@ -376,7 +360,7 @@ Team Section
         <div class="row">
             <div class="col-md-3">
                 <div class="member">
-                    <div class="pic"><img src="img/team-1.jpg" alt=""></div>
+                    <div class="pic"><img src="Imagen/team-1.jpg" alt=""></div>
                     <h4>Walter White</h4>
                     <span>Chief Executive Officer</span>
                     <div class="social">
@@ -390,7 +374,7 @@ Team Section
 
             <div class="col-md-3">
                 <div class="member">
-                    <div class="pic"><img src="img/team-2.jpg" alt=""></div>
+                    <div class="pic"><img src="Imagen/team-2.jpg" alt=""></div>
                     <h4>Sarah Jhinson</h4>
                     <span>Product Manager</span>
                     <div class="social">
@@ -404,7 +388,7 @@ Team Section
 
             <div class="col-md-3">
                 <div class="member">
-                    <div class="pic"><img src="img/team-3.jpg" alt=""></div>
+                    <div class="pic"><img src="Imagen/team-3.jpg" alt=""></div>
                     <h4>William Anderson</h4>
                     <span>CTO</span>
                     <div class="social">
@@ -418,7 +402,7 @@ Team Section
 
             <div class="col-md-3">
                 <div class="member">
-                    <div class="pic"><img src="img/team-4.jpg" alt=""></div>
+                    <div class="pic"><img src="Imagen/team-4.jpg" alt=""></div>
                     <h4>Amanda Jepson</h4>
                     <span>Accountant</span>
                     <div class="social">
@@ -506,7 +490,7 @@ Footer
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright">
-                    &copy; Copyright <strong>Imperial Theme</strong>. All Rights Reserved
+                    &copy; Copyright <strong>Pagina Principal del colegio Adventista buen pastor</strong>. Todos los derechos reservados
                 </div>
                 <div class="credits">
                     <!--
@@ -515,7 +499,8 @@ Footer
                       Licensing information: https://bootstrapmade.com/license/
                       Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Imperial
                     -->
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                   <a href="#"> Desaarollado por Deyvis garcia Cercado</a><br>
+                    Encuentrame en  Facebook como:<a href="https://www.facebook.com/deyvis.garciacercado.16"> Deyvis garcia Cercado</a>
                 </div>
             </div>
         </div>

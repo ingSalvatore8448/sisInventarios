@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class inventario extends Model
 {
     protected $table="inventarios";
-    protected $primaryKey="	idinventario";
+    protected $primaryKey="iddetalleMobiliario";
     public $timestamps=false;
 
     protected $fillable=[

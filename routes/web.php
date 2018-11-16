@@ -70,6 +70,8 @@ Route::post('regisInven/{idMobiliario}','inventarioController@RegisInv');
 Route::get('Historial','inventarioController@Histo');
 Route::get('HistoGeneral','inventarioController@listarhi');
 Route::get('HistoGenera','inventarioController@HistoGene');
+Route::get('cargar/histo/{iddetalleMobiliario}','inventarioController@CargarHisto');
+Route::post('Update/histo/{iddetalleMobiliario}','inventarioController@actualizarInv');
 Route::get('cargarHis/{id}','inventarioController@cargarHis');
 Route::get('cargarCliente','inventarioController@cargarCliente');
 Route::get('editar{idMobiliario}','MobiUserController@cargardatos');
