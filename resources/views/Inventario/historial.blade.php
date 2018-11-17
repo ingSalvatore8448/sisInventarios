@@ -72,21 +72,21 @@
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nombre Mobiliario</label>
-                                    <input type="text" class="form-control" id="his_nombre" required="Campo Obligatorio" name="nombre" placeholder="nombre" >
+                                    <input type="text" readonly="readonly" class="form-control" id="his_nombre" required="Campo Obligatorio" name="nombre" placeholder="nombre" >
                                 </div>
                             </div>
 
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Marca</label>
-                                    <input type="text" class="form-control" id="his_marca_mobi" required="Campo Obligatorio"
+                                    <input type="text" readonly="readonly" class="form-control" id="his_marca_mobi" required="Campo Obligatorio"
                                            name="marca_mobi"  placeholder="Marca">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Serie</label>
-                                    <input type="text" class="form-control" id="his_serie_mobi" required="Campo Obligatorio"
+                                    <input type="text" readonly="readonly" class="form-control" id="his_serie_mobi" required="Campo Obligatorio"
                                            name="serie_mobi" placeholder="Serie" >
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Departamento</label>
-                                    <select class="form-control" id="his_departamento"
+                                    <select readonly="readonly" class="form-control" id="his_departamento"
                                             name="departamento" >
                                     </select>
                                 </div>
@@ -112,7 +112,7 @@
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Categoria</label>
-                                    <select class="form-control" id="his_categoria"
+                                    <select readonly="readonly" class="form-control" id="his_categoria"
                                             required="Campo Obligatorio"  name="Categoria" >
                                     </select>
                                 </div>
@@ -130,7 +130,7 @@
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Descripcion Inventario</label>
-                                    <input type="text" class="form-control" id="his_descripcion"
+                                    <input type="text"  class="form-control" id="his_descripcion"
                                            required="Campo Obligatorio" name="descripcion"  placeholder="Descripcion">
                                 </div>
                             </div>
@@ -297,8 +297,7 @@
                                             showConfirmButton: false,
                                             timer: 1500
                                         });
-                                        setTimeout(window.location.reload.bind(window.location), 1000);
-                                        return false;
+
 
 
 
@@ -307,7 +306,8 @@
                                       alert('error');
                                     }
                                 });
-
+                                setTimeout(window.location.reload.bind(window.location), 1000);
+                                return false;
                             })
 
 

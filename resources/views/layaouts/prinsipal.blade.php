@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>Pagina Web | I.E.Buen pastos </title>
+    <link rel="icon" type="image/png" href="Imagen/logo.png" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
     <meta content="" name="keywords">
     <meta content="" name="description">
 
@@ -499,7 +501,7 @@ Footer
                       Licensing information: https://bootstrapmade.com/license/
                       Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Imperial
                     -->
-                   <a href="#"> Desaarollado por Deyvis garcia Cercado</a><br>
+                   <a href="#"> Desarrollado por Deyvis garcia Cercado</a><br>
                     Encuentrame en  Facebook como:<a href="https://www.facebook.com/deyvis.garciacercado.16"> Deyvis garcia Cercado</a>
                 </div>
             </div>

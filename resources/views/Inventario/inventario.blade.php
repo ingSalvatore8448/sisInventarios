@@ -106,7 +106,6 @@
                                   <div class="form-group">
                                       <label for="exampleInputEmail1">Estado</label>
                                       <select class="form-control" id="estado"required="Campo Obligatorio" name="estado">
-                                          <option >Selecione Estado</option>
                                           <option value="bueno">Bueno</option>
                                           <option value="regular">Regular</option>
                                           <option value="malo">Malo</option>
