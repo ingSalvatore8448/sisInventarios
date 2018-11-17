@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{csrf_token()}}">
     <title> SIA Inventario | I.E.Buen pastor</title>
-    <link rel="icon" type="image/png" href="{{asset('Imagen/logo.png')}}" />
+    <link rel="icon" type="image/png" href="{{asset('Imagen/logo_adv.png')}}" />
 
 
     <!-- Tell the browser to be responsive to screen width -->
