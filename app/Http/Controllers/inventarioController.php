@@ -109,6 +109,9 @@ LIKE '%".$Cliente."%' OR p.apellido_Paterno LIKE '%".$Cliente."%' OR p.apellido_
                     return ' <a data-toggle="modal" data-target="#updaInv" onclick="actualizaIn('.$id->iddetalleMobiliario.')" class="btn btn-warning"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             <span><strong></strong></span>            
     </a>
+    <a data-toggle="modal" data-target="#deletMobi" onclick="EliminarInven('.$id->iddetalleMobiliario.')" class="btn btn-danger"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            <span><strong></strong></span>            
+    </a>
     
     ';})->rawColumns([ 'action'])->make(true);
         }
@@ -160,9 +163,19 @@ LIKE '%".$Cliente."%' OR p.apellido_Paterno LIKE '%".$Cliente."%' OR p.apellido_
             return response()->json($inven);
 
         }
+public  function listarAdmin($id)
+{
+    $Invent = DB::select("SELECT i.iddetalleMobiliario,m.idMobiliario, m.nombre_Mobi,m.marca_Mobi,m.comentario,m.serie_Mobi,m.estado,m.fecaRe_Mobi, m.Departamento_idDepartamento,m.categoria_idcategoria,m.imagen ,m.idPersona ,Concat(p.nombre,' ',p.apellido_Paterno,' ',p.apellido_Materno) as fullname, d.nombre_depar,c.nombre_cate ,i.DescripMobiliario,i.RegisFechaMobi,i.EstadoMob FROM mobiliario as m , departamento as d , categorias as c , inventarios as i, users as u, persona as p WHERE m.Departamento_idDepartamento=d.idDepartamento and m.categoria_idcategoria=c.idcategoria AND m.idPersona=p.idPersona and u.Persona_idPersona=p.idPersona and u.idRol>1 and i.Persona_idPersona=p.idPersona and i.Mobiliario_idMobiliario=m.idMobiliario and u.Persona_idPersona=$id");
+    return Datatables::of($Invent)
+        ->make(true);
 
+}
 
-
+public function eliminarHis($id){
+    $mobi=inventario::find($id);
+    $mobi->delete();
+    return response()->json($mobi);
+}
 
 
 }

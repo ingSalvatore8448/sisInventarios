@@ -42,13 +42,13 @@
    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">Telefono</label>
-    <input type="text" maxlength="5"  class="form-control"  id="telefono" size="9" required="Campo Obligatorio" value="{{old("telefono")}}" name="telefono"  placeholder="Telefono">
+    <input type="text"  onkeypress="return controltag(event)" maxlength="9"  class="form-control"  id="telefono" size="9" required="Campo Obligatorio" value="{{old("telefono")}}" name="telefono"  placeholder="Telefono">
      </div>
    </div>
       <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
    <div class="form-group">
     <label for="exampleInputEmail1">N°DNI</label>
-    <input type="number"  class="form-control"  id="dni" required="Campo Obligatorio" value="{{old("dni")}}" name="dni"  placeholder="DNI">
+    <input  onkeypress="return controltag(event)" maxlength="8" class="form-control"  id="dni" required="Campo Obligatorio" value="{{old("dni")}}" name="dni"  placeholder="DNI">
      </div>
    </div>
      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
@@ -132,35 +132,17 @@
 </center>
   {!!Form::close()!!}
     @endsection
-
-
 @section('footer_scripts')
-    <script type="text/javascript">
-        var numero="1234567890";
-        $(document).ready(function(){
-            validarCualquierNumero()
-        });
-        function validarCualquierNumero(){
-            $(".numeric").numeric();
-            $(".integer").numeric(false, function() { alert("Integers only"); this.value = ""; this.focus(); });
-            $(".positive").numeric({ negative: false }, function() { alert("No negative values"); this.value = ""; this.focus(); });
-            $(".positive-integer").numeric({ decimal: false, negative: false }, function() { alert("Positive integers only"); this.value = ""; this.focus(); });
-            $(".decimal-2-places").numeric({ decimalPlaces: 2 });
-            $(".decimal-3-places").numeric({ decimalPlaces: 3 });
-            $("").keypress(function (e) {
-                var caracter=String.fromCharCode(e.which);
-                if(numero.indexOf(caracter)<0)
-                    return false;
 
-            });
-            $("#remove").click(
-                function(e)
-                {
-                    e.preventDefault();
-                    $(".numeric,.integer,.positive,.positive-integer,.decimal-2-places").removeNumeric();
-                }
-            );
+    <script>
+        function controltag(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true; // para la tecla de retroseso
+            else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+            patron =/[0-9\s]/;// -> solo numeros
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
         }
     </script>
 
-    @endsection
+@endsection

@@ -231,7 +231,7 @@
                         </ul>
                     </li>
                 @endif
-
+  @if(Auth::user()->idRol==2)
                 <li class="treeview">
                     <a href="#">
 
@@ -247,6 +247,7 @@
                         <li><a href="{{URl('MobiResponsable')}}"><i class="fa fa-circle-o"></i>Listar  Responsable</a></li>
                     </ul>
                 </li>
+                @endif
                 <li class="treeview">
                     <a href="#">
 
@@ -257,8 +258,15 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{url('Inventarios')}}"><i class="fa fa-circle-o"></i> Registrar Inventarios</a></li>
+                          @if(Auth::user()->idRol==1)
+                        <li><a href="{{url('Inventarios')}}"><i class="fa fa-circle-o"></i>Inventariado</a></li>
+ @endif
+                    @if(Auth::user()->idRol==2)
+                          <li><a href="{{url('Inventarios')}}"><i class="fa fa-circle-o"></i> Registrar Inventarios</a></li>
+                             @endif
+                        @if(Auth::user()->idRol==2)
                         <li><a href="{{url('Historial')}}"><i class="fa fa-circle-o"></i>Historial Inventario</a></li>
+                         @endif
                         @if(Auth::user()->idRol==1)
                         <li><a href="{{url('HistoGeneral')}}"><i class="fa fa-circle-o"></i>Historial General</a></li>
                    @endif
@@ -358,12 +366,6 @@
 
 @yield('footer_scripts')
 
-<script src="{{asset('pages/js/jquery.bootstrap.wizard.js')}}" type="text/javascript"></script>
 
-<!--  Plugin for the Wizard -->
-<script src="{{asset('pages/js/gsdk-bootstrap-wizard.js')}}"></script>
-
-<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-<script src="{{asset('pages/js/jquery.validate.min.js')}}"></script>
 </body>
 </html>

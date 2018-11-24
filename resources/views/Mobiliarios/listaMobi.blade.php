@@ -325,6 +325,27 @@ function delteMobi(idMobiliario){
     }
 
 }
+function EliminarMobi(idMobiliario) {
+   $('#delete').click(function () {
+       $.ajax({
+           url:'{{url('eliminar')}}/'+ idMobiliario,
+           type:'get',
+           dataType:'json',
+           success:function (response) {
+               $('#deletMobi').modal('hide');
+               swal({
+                   position: 'center',
+                   type: 'success',
+                   title: 'Eliminado Correctamente',
+                   showConfirmButton: false,
+                   timer: 1500
+               });
+               setTimeout(window.location.reload.bind(window.location), 1000);
+               return false;
+           }
+       })
+   })
+}
 
 $('body').on('hidden.bs.modal', '.modal', function () {
 
@@ -335,6 +356,7 @@ $('body').on('hidden.bs.modal', '.modal', function () {
 });
         $('#deletMobi').on('hidden.bs.modal', function (e) {
             // do something...
+
             location.reload();
 
 

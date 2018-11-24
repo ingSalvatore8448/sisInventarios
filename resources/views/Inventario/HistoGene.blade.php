@@ -63,6 +63,9 @@
                     {
                         extend: 'excelHtml5',
                         title: "SisInventario | I.E.Buen pastor",
+                        text: 'Descargar en Excel',
+                        className:'btn btn-danger ',
+
                         exportOptions: {
                             columns: [ 0, 1,2, 3, 4, 5,6,7,8,9,10 ]
                         }
@@ -70,6 +73,8 @@
                     {
                         extend: 'print',
                         title: "SisInventario | I.E.Buen pastor",
+                        text: 'Imprimir',
+                        className: 'btn btn-outline-warning btn-icon-text ',
                         exportOptions: {
                             columns: [ 0, 1,2, 3, 4, 5,6,7,8,9,10 ]
                         }

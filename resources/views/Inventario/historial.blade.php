@@ -16,7 +16,7 @@
                 <p>Bienvenido Docente:<strong><span class="hidden-xs"> {{ Auth::user()->username }}</span></strong>  Sea cuidadoso con su inventariado</p>
             </div><br>
         @endif
-        <input value="{{ Auth::user()->id }}" id="iduser" type="hidden">
+        <input value="{{ Auth::user()->Persona_idPersona }}" id="iduser" type="hidden">
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
@@ -161,6 +161,30 @@
                             </div></center>
 
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--modal eliminar-->
+    <div id="deletMobi" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <form id="eliminar"></form>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="fa fa-trash"></i>
+                    </div>
+                    <h4 class="modal-title">Estas seguro?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Realmente quieres borrar estos registro? Este proceso no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cancel" onreset="eliminar()" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                    <button type="submit"  id="delete" class="btn btn-danger" >Eliminar</button>
                 </div>
             </div>
         </div>
@@ -323,6 +347,28 @@
 
         }
 
+        function EliminarInven(iddetalleMobiliario) {
+            $('#delete').click(function () {
+                $.ajax({
+                    url:'{{url('eliminarHis')}}/'+ iddetalleMobiliario,
+                    type:'get',
+                    dataType:'json',
+                    success:function (response) {
+                        $('#deletMobi').modal('hide');
+                        swal({
+                            position: 'center',
+                            type: 'success',
+                            title: 'Eliminado Correctamente',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(window.location.reload.bind(window.location), 1000);
+                        return false;
+                    }
+                })
+            })
+        }
+
         $('body').on('hidden.bs.modal', '.modal', function () {
 
             $("#his_categoria").empty();
@@ -330,5 +376,12 @@
 
 
         });
+        $('#deletMobi').on('hidden.bs.modal', function (e) {
+            // do something...
+
+            location.reload();
+
+
+        })
     </script>
     @endsection

@@ -40,6 +40,8 @@ class MobiliarioController extends Controller
                 ->addColumn('action', function ($id){
                     return ' <a data-toggle="modal" data-target="#updatePro" onclick="editarMobi('.$id->idMobiliario.')" class="btn btn-warning"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             <span><strong></strong></span>            
+    </a> <a data-toggle="modal" data-target="#deletMobi" onclick="EliminarMobi('.$id->idMobiliario.')" class="btn btn-danger"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            <span><strong></strong></span>            
     </a>
     
     ';
@@ -223,6 +225,8 @@ class MobiliarioController extends Controller
         $mobi->delete();
         return response()->json($mobi);
        }
+
+
 
 
     

@@ -18,8 +18,6 @@
 					<th>telefono</th>
 					<th>DNI</th>
 					<th>Email</th>
-					<th>sexo</th>
-					<th>Cumpleaños</th>
 					<th>usuario</th>
 					<th>Rol</th>
 					<th>Departamento</th>
@@ -34,8 +32,6 @@
 							<td>{{$use->telefono}}</td>
 							<td>{{$use->dni}}</td>
 							<td>{{$use->email}}</td>
-							<td>{{$use->sexo}}</td>
-							<td>{{$use->Fecha_cumple}}</td>
 							<td>{{$use->username}}</td>
 							<td>{{$use->nombre_rol}}</td>
 							<td>{{$use->nombre_depar}}</td>
@@ -63,3 +59,5 @@
 
 
 @endsection
+
+
