@@ -94,13 +94,13 @@
 
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 <div class="container-fluid">
-		<h3>Listado de Departamento <a data-toggle="modal" id="add_data"><button class="btn btn-success">Nuevo</button></a></h3>
+		<h3>Lista de Departamento <a data-toggle="modal" id="add_data"><button class="btn btn-success">Nuevo</button></a></h3>
     
     <div class="table-responsive">
         <table class="table table-striped" id="users-table">
             <thead>
                 <tr>
-                    <th>Nombre Departamento</th>
+                    <th>Nombre departamento</th>
                     <th>Estado</th>
                      <th>Operaciones</th>
                 </tr>
@@ -117,20 +117,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Registrar Departamento</h4>
+                <h4 class="modal-title">Registrar departamento</h4>
             </div>
             <div class="modal-body">
                 <form role="form" id="frmDataAdd">
                     <div class="form-group">
                         <label for="name" class="control-label">
-                            nombre departamento<span class="required">*</span>
+                            Nombre departamento<span class="required">*</span>
                         </label>
                         <input type="text" class="form-control" id="name" name="nombre_Depar">
                         <p class="errorName text-danger hidden"></p>
                     </div>
                     <div class="form-group">
                         <label for="name" class="control-label">
-                            nombre departamento<span class="required">*</span>
+                            Nombre estado<span class="required">*</span>
                         </label>
                         <select type="text"  class="form-control" id="name" name="estado">
                             <option value="Activo">Activo</option>
@@ -140,8 +140,8 @@
 
                 </form>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="btnSave"><i class="glyphicon glyphicon-save"></i>&nbsp;Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnSave"><i class="glyphicon glyphicon-save"></i>&nbsp;Guardar</button>
                 </div>
             </div>
         </div>
@@ -182,8 +182,8 @@
                 </div>
             </form>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="btnUpdate"><i class="glyphicon glyphicon-save"></i>&nbsp;Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate"><i class="glyphicon glyphicon-save"></i>&nbsp;Guardar</button>
                 </div>
             </div>
         </div>

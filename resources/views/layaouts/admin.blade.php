@@ -164,7 +164,7 @@
             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="active"><a href="{{url('Departamen')}}"><i class="fa fa-circle-o"></i>Registros</a></li>
+                            <li class="active"><a href="{{url('Departamen')}}"><i class="fa fa-circle-o"></i>Registrar departamento</a></li>
 
                         </ul>
                     </li>
@@ -174,13 +174,13 @@
                         <a href="">
                             <i class="fa fa-user-plus"  style="color: white" aria-hidden="true"></i>
 
-                            <span>GESTION DE USUARIOS</span>
+                            <span>Usuario</span>
                             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{url('Usuario/create')}}"><i class="fa fa-circle-o"></i>REGISTRAR USUARIOS</a></li>
+                            <li><a href="{{url('Usuario/create')}}"><i class="fa fa-circle-o"></i>Registrar Usuario</a></li>
                             <li><a href="{{url('Usuario')}}"><i class="fa fa-circle-o"></i>Listar Usuarios</a></li>
                         </ul>
                     </li>
@@ -195,7 +195,7 @@
             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{url('Categorias')}}"><i class="fa fa-circle-o"></i>Listado de Categorias</a></li>
+                            <li><a href="{{url('Categorias')}}"><i class="fa fa-circle-o"></i>Registrar Categorias</a></li>
 
                         </ul>
                     </li>
@@ -208,15 +208,15 @@
             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{url('Roles')}}"><i class="fa fa-circle-o"></i>REGISTRAR ROLES</a></li>
-                            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i>Lista Roles</a></li>
+                            <li><a href="{{url('Roles')}}"><i class="fa fa-circle-o"></i>Registrar rol</a></li>
+                            
                         </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
 
                             <i class="fa fa-gear" style="color: white" aria-hidden="true"></i>
-                            </i> <span>Mobiliarios Administrador</span>
+                            </i> <span>Mobiliarios</span>
                             <span class="pull-right-container">
               <i class=" fa fa-angle-left pull-right" ></i>
             </span>
@@ -224,9 +224,9 @@
                         <ul class="treeview-menu">
 
                         <!--   <li><a href="#"><i class="fa fa-circle-o"></i>Registro Partes Mobiliario</a></li>   -->
-                            <li><a href="{{URL('mobiliario')}}"><i class="fa fa-circle-o"></i>LISTAR  Mobiliario</a></li>
-                            <li><a href="{{URL('Mob/mobicre')}}"><i class="fa fa-circle-o"></i>Registrar solo  Mobiliario</a></li>
-
+                            
+                            <li><a href="{{URL('Mob/mobicre')}}"><i class="fa fa-circle-o"></i>Registrar Mobiliario</a></li>
+                            <li><a href="{{URL('mobiliario')}}"><i class="fa fa-circle-o"></i>Lista Mobiliario</a></li>
 
                         </ul>
                     </li>
@@ -236,7 +236,7 @@
                     <a href="#">
 
                         <i class="fa fa-gear" style="color: white" aria-hidden="true"></i>
-                        </i> <span>Gestion de Mobiliarios</span>
+                        </i> <span>Mobiliarios</span>
                         <span class="pull-right-container">
               <i class=" fa fa-angle-left pull-right" ></i>
             </span>
@@ -244,7 +244,7 @@
                     <ul class="treeview-menu">
 
                         <li><a href="{{URL('Mob/mobicre')}}"><i class="fa fa-circle-o"></i>Registrar  Mobiliario</a></li>
-                        <li><a href="{{URl('MobiResponsable')}}"><i class="fa fa-circle-o"></i>Listar  Responsable</a></li>
+                        <li><a href="{{URl('MobiResponsable')}}"><i class="fa fa-circle-o"></i>Lista  mobiliario</a></li>
                     </ul>
                 </li>
                 @endif
@@ -302,7 +302,7 @@
     <div class="pull-right hidden-xs">
         <b>Version</b> 1.0
     </div>
-   <center><strong>UPEU &copy; 2014-2016 <a href="https://adminlte.io">Derecho de actor salvatore</a>.</strong> All rights
+   <center><strong>UPEU &copy; 2014-2016 <a href="https://adminlte.io">Derecho de autor salvatore</a>.</strong> All rights
        reserved.</center>
 </footer>
 </center>

@@ -61,10 +61,10 @@ Hero Section
                 <img class="" src="Imagen/logo.png" alt="Imperial">
             </div>
 
-            <h1>Bienvenidos a la web principal del colegio buen pastor de cristo rey</h1>
+            <h1>Bienvenidos a la web principal del colegio buen pastor de canto rey</h1>
             <h2>Aqui <span class="rotating">Encontraras toda informacion que necesites de nuestra colegio </span></h2>
             <div class="actions">
-                <a href="#about" class="btn-get-started">Empezar</a>
+                <a href="#about" class="btn-get-started">Iniciar</a>
                 <a href="#services" class="btn-services">Mas Servicios</a>
             </div>
         </div>
@@ -85,14 +85,14 @@ Header Section
 
         <nav id="nav-menu-container">
             <ul class="nav-menu">
-                <li class="menu-active"><a href="#hero">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-                <li class="menu-has-children"><a href="">SIA Inventario</a>
+                <li class="menu-active"><a href="#hero">Inicio</a></li>
+                <li><a href="#about">Sobre nosotros</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#portfolio">Portafolio</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#team">Equipo</a></li>
+                <li><a href="#contact">Contáctenos Us</a></li>
+                <li class="menu-has-children"><a href="">SIA INVENTARIO</a>
                     <ul>
                         <li><a href="{{url('login')}}">Login</a></li>
 
@@ -114,9 +114,9 @@ About Section
     <div class="container wow fadeInUp">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="section-title">About Us</h3>
+                <h3 class="section-title">Sobre nosotros</h3>
                 <div class="section-title-divider"></div>
-                <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam</p>
+                <p class="section-description">La red de Educación Adventista forma parte de la Iglesia Adventista del Séptimo día y está presente en 165 países, con casi 2 millones de alumnos. En Sudamérica cuenta con 900 instituciones educativas en todos los niveles, 320 mil alumnos matriculados y 20 mil docentes.</p>
             </div>
         </div>
     </div>
@@ -128,7 +128,7 @@ About Section
             </div>
 
             <div class="col-md-6 about-content">
-                <h2 class="about-title">We provide great services and ideass</h2>
+                <h2 class="about-title">Entrega y precentacion SIA</h2>
                 <p class="about-text">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
                     in reprehenderit in voluptate

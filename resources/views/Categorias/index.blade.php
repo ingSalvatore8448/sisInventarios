@@ -91,7 +91,7 @@
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
     <div class="container-fluid">
-        <h3>Listado de Categorias <a data-toggle="modal" id="ADCate"><button class="btn btn-success">Nuevo</button></a></h3>
+        <h3>Registrar Categorias<a data-toggle="modal" id="ADCate"><button class="btn btn-success">Nuevo</button></a></h3>
         <div class="table-responsive">
             <table class="table table-striped" id="users-table">
                 <thead>
@@ -124,7 +124,7 @@
                         </div>
                         <div class="form-group">
                             <label for="name" class="control-label">
-                                nombre Categoria<span class="required">*</span>
+                                Nombre Categoria<span class="required">*</span>
                             </label>
                             <input type="text" class="form-control" id="nombre_Cate" name="nombre_Cate">
                             <p class="errorName text-danger hidden"></p>
@@ -142,8 +142,8 @@
 
                     </form>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="savct"><i class="glyphicon glyphicon-save"></i>&nbsp;Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="savct"><i class="glyphicon glyphicon-save"></i>&nbsp;Guardar</button>
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@
                     </form>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="btnUpdate"><i class="glyphicon glyphicon-save"></i>&nbsp;Save</button>
+                        <button type="button" class="btn btn-primary" id="btnUpdate"><i class="glyphicon glyphicon-save"></i>&nbsp;Guardar</button>
                     </div>
                 </div>
             </div>
@@ -199,7 +199,7 @@
                 </div>
                 <div class="modal-body">
                     <p>¿Realmente quieres borrar estos registro? Este proceso no se puede deshacer.</p>
-                </div>
+                </div>  
                 <div class="modal-footer">
                     <button type="button" id="cancel"  class="btn btn-info" data-dismiss="modal">Cancel</button>
                     <button type="submit"  id="delete"   class="btn btn-danger" >Eliminar</button>
