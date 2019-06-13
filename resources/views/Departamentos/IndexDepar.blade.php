@@ -271,7 +271,7 @@ $('#add_data').click(function (e) {
 
 })
 
- //Adding new data
+ // Añadiendo nuevos datos
 
  $('#btnSave').click(function (e) {
      e.preventDefault();
@@ -351,7 +351,8 @@ function eliminar(idDepartamento) {
 }
 
 
-// updating data infomation
+// Modifica la información de los datos
+
     $('#btnUpdate').on('click',function(e){
         e.preventDefault();
         var url = "http://127.0.0.1:8000/Departamen/"+$('#edit_ID').val();
