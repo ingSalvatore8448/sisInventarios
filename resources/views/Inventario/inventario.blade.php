@@ -31,8 +31,7 @@
           <!-- Default box -->
               @if(Auth::user()->idRol==1)
           <div class="box">
-              <input type="text" class="form-control" id="idPersona"
-                     required="Campo Obligatorio" hidden  name="idPersona"  placeholder="Descripcion">
+              <input type="hidden" class="form-control" id="idPersona"  required="Campo Obligatorio"   name="idPersona"  placeholder="Descripcion">
               <div class="box-header with-border">
                   <h3 class="box-title">Inventario de Mobiliarios</h3><br>
                 <br>  <div class="row">
@@ -365,6 +364,7 @@
                              data:frm.serialize(),
                              success:function (response) {
                                  $('#updatePro').modal('hide');
+
                                  swal({
                                      position: 'center',
                                      type: 'success',
@@ -372,6 +372,7 @@
                                      showConfirmButton: false,
                                      timer: 1500
                                  });
+                                 frm.trigger('reset');
                                  table.ajax.reload(null,false);
 
                              }

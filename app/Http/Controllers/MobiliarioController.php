@@ -138,7 +138,7 @@ class MobiliarioController extends Controller
 
         $mobiliario->save();
 
-        return Redirect::to('mobiliario');
+        return Redirect::to('MobiResponsable');
        }
 
        public function registrar(Mobiliariorequest $request){
