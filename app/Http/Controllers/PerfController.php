@@ -20,15 +20,17 @@ class PerfController extends Controller
 {
     public function index(Request $request){
         $id_tra = Auth::user()->Persona_idPersona;
-        $persona1=DB::table('persona as p')
-            ->join('users as u','p.idPersona','u.Persona_idPersona')
-            ->join('rol as r','p.Rol_idRol','=','r.idRol')
-            ->join('departamento as de','p.Departamento_idDepartamento','=','de.idDepartamento')
-            ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'u.username', 'p.sexo', 'p.Fecha_cumple', 'u.imagen', 'u.email', 'r.nombre_rol', 'de.nombre_depar', 'u.Persona_idPersona','u.id','u.idRol')
-            ->where('p.idPersona', '=', $id_tra)
-            ->first();
+    
         $rol=DB::table('rol')->get();
         $departamento=DB::table('departamento')->get();
+        $persona1=DB::table('persona as p')
+            ->join('users as u','p.idPersona','u.Persona_idPersona')
+            ->join('rol as r','u.idRol','=','r.idRol')
+            ->join('departamento as de','p.Departamento_idDepartamento','=','de.idDepartamento')
+            ->select('p.idPersona', 'p.nombre', 'p.apellido_Paterno', 'p.apellido_Materno', 'p.telefono', 'p.dni', 'u.username', 'p.sexo', 'p.Fecha_cumple', 'u.imagen', 'u.email', 'r.nombre_rol', 'de.nombre_depar', 'u.Persona_idPersona','u.id','u.idRol')
+            ->where('u.Persona_idPersona', '=', $id_tra)
+            ->first();
+       
         return view('Perfil.perfil',['persona1'=>$persona1,'rol'=>$rol,'departamento'=>$departamento]);
     }
 

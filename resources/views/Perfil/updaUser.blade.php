@@ -9,7 +9,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <a class="close" data-dismiss="modal">×</a>
-                        <h3>Editar Rol</h3>
+                        <h3>Editar Usuario</h3>
 
                         @if (count($errors)>0)
                             <div class="alert alert-danger">
@@ -30,13 +30,13 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Correo</label>
-                            <input type="text" name="email"  value="{{$persona1->email}}" class="form-control" placeholder="Rol..">
+                            <input type="text" name="email"  value="{{$persona1->email}}" class="form-control" >
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Username</label>
-                            <input type="text" name="username"  value="{{$persona1->username}}" class="form-control" placeholder="Rol..">
+                            <input type="text" name="username"  value="{{$persona1->username}}" class="form-control">
                         </div>
                     </div>
                     <div style="padding-bottom: 50px"  class="col-lg-6 col-sm-6 col-md-6 col-xs-12">

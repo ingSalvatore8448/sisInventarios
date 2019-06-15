@@ -10,6 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*
+Inventario\User::create([
+	'username' => 'deyvis',
+'password' =>bcrypt('1234'),
+	'idRol' => '2',
+    'Persona_idPersona' =>'75',
+       'imagen'=>'33032531_385425901940660_3261485881252380672_n'
+]);
+*/
 
 Route::get('/', function () {
     return view('layaouts.prinsipal');
@@ -59,10 +68,19 @@ Route::resource('Tablero','HomController');
 Route::Post('user/Password','PerfController@canbiarpass');
 Route::get('partMobi/mobi','MobiliarioController@getpartes');
 Route::post('PartCreate/Mobi','MobiliarioController@crearpartesmobi');
+
+
 Route::post('Mob/mobicre','MobiliarioController@registrar')->name('registrar');
 Route::get('Mob/mobicre','MobiliarioController@CrearMobi');
+Route::post('Mob/RegistrarMobi','MobiliarioController@registrarMobiliario')->name('registrar1');
+
+Route::get('Mob/RegistrarMobi','MobiliarioController@RegistrarMobi');
+
+
+
 Route::get('mob/lisMobi','MobiliarioController@listar')->name('buscar');
 Route::resource('MobiResponsable','MobiUserController');
+Route::get('Listar/{idPersona}','MobiUserController@listarrrr');
 Route::get('Inventarios', 'inventarioController@listar');
 Route::get('Inventario/{Persona_idPersona}','inventarioController@listarMobiID');
 Route::get('cargarMobi/{Persona_idPersona}','inventarioController@CargarMobi');

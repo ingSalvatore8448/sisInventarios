@@ -1,3 +1,4 @@
+
 <div class="modal fade modal-slide-in-right" aria-hidden="true"
      role="dialog" tabindex="-1" id="modal-editPersona-{{$persona1->idPersona}}">
     {{Form::Open(array('action'=>array('PerfController@updatePersona',$persona1->idPersona),'method'=>'patch','files'=>true))}}
@@ -53,23 +54,6 @@
                                 @foreach($departamento as $depa)
                                     <option value="{{$depa->idDepartamento}}">{{$depa->nombre_depar}}</option>
                                 @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Sexo</label>
-                            <select name="sexo" class="form-control border-input">
-
-                                <?php if ($persona1->sexo == 'Masculino'): ?>
-                                <option value="Masculino" selected >Masculino</option>
-                                <option value="Feminino">Feminino</option>
-
-                                <?php elseif ($persona1->sexo == 'Feminino'): ?>
-                                <option value="Feminino" selected >Feminino</option>
-                                <option value="Masculino">Masculino</option>
-
-                                <?php endif ?>
                             </select>
                         </div>
                     </div>

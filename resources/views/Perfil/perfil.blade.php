@@ -157,26 +157,11 @@
                     <!-- SIDEBAR MENU -->
                     <div class="profile-usermenu">
                         <ul class="nav">
-                            <li class="active">
-                                <a href="#">
-                                    <i class="glyphicon glyphicon-home"></i>
-                                    Overview </a>
-                            </li>
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#contact-modal">
 
                                     <i class="glyphicon glyphicon-user"> </i>
                                     Canbiar Contraseña </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="glyphicon glyphicon-ok"></i>
-                                    Tasks </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="glyphicon glyphicon-flag"></i>
-                                    Help </a>
                             </li>
                         </ul>
                     </div>

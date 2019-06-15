@@ -7,6 +7,7 @@
             <h3>Listado de Mobiliarios Responsable</h3>
         </div>
     </div>
+    <p id="idpersonass">  {{ Auth::user()->Persona_idPersona }}</p>
 
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -15,7 +16,6 @@
                     <thead>
                     <th>Nombre</th>
                     <th>Marca</th>
-                    <th>Serie</th>
                     <th>Fecha Registro</th>
                     <th>Departamento</th>
                     <th>Categoria</th>
@@ -140,7 +140,9 @@
 
     <script type="text/javascript">
         var table;
+        var id=$('#idpersonass').html();
         $(document).ready(function () {
+
             table = $('#tbmobi').dataTable({
                 stateSave: true,
                 responsive: true,
@@ -177,12 +179,11 @@
 
 
                 },
-                ajax: '{{url('mobiliario')}}',
+                ajax: '{{url('Listar')}}/'+id,
 
                 columns: [
                     {data: 'nombre_Mobi', name:'nombre_Mobi'},
                     {data: 'marca_Mobi', name:'marca_Mobi'},
-                    {data: 'serie_Mobi',name:'serie_Mobi'},
                     {data: 'fecaRe_Mobi', name:'fecaRe_Mobi'},
                     {data: 'nombre_depar',name:'nombre_depar'},
                     {data: 'nombre_cate',name:'nombre_cate'},

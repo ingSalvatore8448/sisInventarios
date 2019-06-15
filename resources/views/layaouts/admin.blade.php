@@ -226,6 +226,7 @@
                         <!--   <li><a href="#"><i class="fa fa-circle-o"></i>Registro Partes Mobiliario</a></li>   -->
                             
                             <li><a href="{{URL('Mob/mobicre')}}"><i class="fa fa-circle-o"></i>Registrar Mobiliario</a></li>
+                        
                             <li><a href="{{URL('mobiliario')}}"><i class="fa fa-circle-o"></i>Lista Mobiliario</a></li>
 
                         </ul>
@@ -243,7 +244,7 @@
                     </a>
                     <ul class="treeview-menu">
 
-                        <li><a href="{{URL('Mob/mobicre')}}"><i class="fa fa-circle-o"></i>Registrar  Mobiliario</a></li>
+                        <li><a href="{{URL('Mob/RegistrarMobi')}}"><i class="fa fa-circle-o"></i>Registrar  Mobiliario</a></li>
                         <li><a href="{{URl('MobiResponsable')}}"><i class="fa fa-circle-o"></i>Lista  mobiliario</a></li>
                     </ul>
                 </li>

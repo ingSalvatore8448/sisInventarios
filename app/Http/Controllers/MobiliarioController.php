@@ -19,6 +19,7 @@ use Inventario\Http\Requests\MobiRes;
 use Validator;
 use DB;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Auth;
 use Mockery\Exception;
 
 class MobiliarioController extends Controller
@@ -102,8 +103,42 @@ class MobiliarioController extends Controller
        public function CrearMobi(){
         $mobiliario=Categoria::all();
         $departamento=Departamentos::all();
-        $persona=DB::select("SELECT Concat(nombre,' ',apellido_Paterno,' ',apellido_Materno) as nombres,idPersona,telefono,dni,sexo,Fecha_cumple,Rol_idRol,Departamento_idDepartamento FROM persona");
+        $persona=DB::select("SELECT Concat(nombre,' ',apellido_Paterno,' ',apellido_Materno) as nombres,idPersona,telefono,dni,sexo,Fecha_cumple,Rol_idRol,Departamento_idDepartamento FROM persona WHERE persona.Rol_idRol=2");
         return view('Mobiliarios.createRespo',['categoria'=>$mobiliario,'departamento'=>$departamento,'perso'=>$persona]);
+       }
+       public function RegistrarMobi(){
+             $id_Persona = Auth::user()->Persona_idPersona;
+        $mobiliario=Categoria::all();
+        $departamento=Departamentos::all();
+
+        $persona=DB::select("SELECT CONCAT(persona.nombre,' ',persona.apellido_Paterno,' ',persona.apellido_Materno) as
+         nombre,users.Persona_idPersona FROM users ,persona WHERE users.Persona_idPersona=persona.idPersona and
+           users.Persona_idPersona=$id_Persona");
+        return view('Mobiliarios.RegisMobiUsuario',['categoria'=>$mobiliario,'departamento'=>$departamento,'perso'=>$persona]);
+       }
+
+       public function registrarMobiliario(Mobiliariorequest $request){
+        $mobiliario=new Mobiliarios();
+        $mobiliario->nombre_Mobi=$request->get('nombre');
+        $mobiliario->marca_Mobi=$request->get('marca');
+        $mobiliario->serie_Mobi=$request->get("serie");
+        $mobiliario->estado=$request->get('estado');
+        $mobiliario->fecaRe_Mobi=$request->get("fecha");
+        $mobiliario->comentario=$request->get("comentario");
+        $mobiliario->Departamento_idDepartamento=$request->get('nombre_depar');
+        $mobiliario->categoria_idcategoria=$request->get('nombre_cate');
+        $mobiliario->idPersona=$request->get('perso');
+        if(Input::hasFile('imagen')){
+            $file=Input::file('imagen');
+            $file->move(public_path().'/Imagenes/Mobiliario/',$file->getClientOriginalName());
+            $mobiliario->imagen=$file->getClientOriginalName();
+
+
+        }
+
+        $mobiliario->save();
+
+        return Redirect::to('mobiliario');
        }
 
        public function registrar(Mobiliariorequest $request){
@@ -128,9 +163,14 @@ class MobiliarioController extends Controller
 
            $mobiliario->save();
 
-           return Redirect::to('mobiliario');
+           return Redirect::to('MobiResponsable');
 
        }
+
+
+
+
+
 
 
        public function getpartes(){

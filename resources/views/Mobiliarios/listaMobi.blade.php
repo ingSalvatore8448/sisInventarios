@@ -15,7 +15,6 @@
                     <thead>
                     <th>Nombre</th>
                     <th>Marca</th>
-                    <th>Serie</th>
                     <th>Fecha Registro</th>
                     <th>Departamento</th>
                     <th>Categoria</th>
@@ -182,7 +181,6 @@ $(document).ready(function () {
             columns: [
                 {data: 'nombre_Mobi', name:'nombre_Mobi'},
                 {data: 'marca_Mobi', name:'marca_Mobi'},
-                {data: 'serie_Mobi',name:'serie_Mobi'},
                 {data: 'fecaRe_Mobi', name:'fecaRe_Mobi'},
                 {data: 'nombre_depar',name:'nombre_depar'},
                 {data: 'nombre_cate',name:'nombre_cate'},
